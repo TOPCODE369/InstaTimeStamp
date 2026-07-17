@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PostTime — See When It Was Posted</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: #2a2a3a;
+    --accent: #ff6b35;
+    --accent2: #ff9f1c;
+    --text: #f0eeff;
+    --muted: #7070a0;
+    --success: #4ade80;
+    --glow: rgba(255, 107, 53, 0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Atmospheric background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(ellipse, rgba(255,107,53,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .grain {
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    position: relative; z-index: 1;
+  }
+
+  /* Header */
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,107,53,0.1);
+    border: 1px solid rgba(255,107,53,0.3);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 11px; letter-spacing: 0.12em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    max-width: 480px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  /* Input area */
+  .input-section {
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .input-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .url-input {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .url-input::placeholder { color: var(--muted); }
+  .url-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--glow);
+  }
+
+  .check-btn {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .check-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .check-btn:active { transform: translateY(0); }
+  .check-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .hint {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* Result card */
+  .result-card {
+    margin-top: 36px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    display: none;
+    animation: fadeUp 0.4s ease both;
+  }
+  .result-card.visible { display: block; }
+  .result-card.success { border-color: rgba(74,222,128,0.3); }
+  .result-card.error { border-color: rgba(255,107,53,0.3); }
+
+  .result-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .result-shortcode {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    word-break: break-all;
+  }
+  .result-shortcode span { color: var(--accent); }
+
+  .time-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .time-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .time-block-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .time-block-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .time-block-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .age-bar-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .age-bar-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: flex; justify-content: space-between;
+  }
+  .age-bar-track {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .age-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 3px;
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 0%;
+  }
+
+  .timezone-note {
+    font-size: 11px;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .timezone-note::before {
+    content: '⏱';
+    font-size: 13px;
+  }
+
+  /* Error state */
+  .error-msg {
+    color: var(--accent);
+    font-size: 13px;
+    display: flex; align-items: flex-start; gap: 8px;
+    line-height: 1.6;
+  }
+  .error-msg::before { content: '⚠'; flex-shrink: 0; }
+
+  /* How-to section */
+  .howto {
+    margin-top: 60px;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+  .howto-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .steps {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .step {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px; font-weight: 800;
+    color: var(--accent);
+    background: rgba(255,107,53,0.08);
+    border: 1px solid rgba(255,107,53,0.2);
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-text {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    padding-top: 4px;
+  }
+  .step-text strong { color: var(--text); }
+
+  /* Footer */
+  .footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex; justify-content: space-between;
+    animation: fadeUp 0.6s 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @media (max-width: 480px) {
+    .input-row { flex-direction: column; }
+    .time-grid { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="container">
+  <div class="badge"><span class="badge-dot"></span> Free · No login needed</div>
+
+  <h1>See <span>exactly when</span><br>it was posted.</h1>
+  <p class="subtitle">Instagram hides exact post times on mobile. Paste any post URL below — we decode the timestamp straight from the post ID.</p>
+
+  <div class="input-section">
+    <label class="input-label" for="urlInput">Instagram post URL</label>
+    <div class="input-row">
+      <input
+        class="url-input"
+        id="urlInput"
+        type="url"
+        placeholder="https://www.instagram.com/p/ABC123xyz/"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="check-btn" id="checkBtn" onclick="checkPost()">Check Time →</button>
+    </div>
+    <p class="hint">Works with /p/ posts and /reel/ reels. No data is sent anywhere — everything runs in your browser.</p>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <!-- filled by JS -->
+  </div>
+
+  <div class="howto">
+    <div class="howto-title">How to use</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Open Instagram and find the post you're curious about.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Tap the <strong>⋯ menu → Copy link</strong> (or on desktop, click the post and copy the URL from your browser).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Paste the link above and hit <strong>Check Time</strong>. The exact date and time will appear instantly.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>How does it work?</strong> Instagram's post shortcodes contain an encoded timestamp. We decode it locally in your browser — no API calls, no account needed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>PostTime — your browser, your data</span>
+    <span>Works offline after first load</span>
+  </div>
+</div>
+
+<script>
+// Instagram shortcode → timestamp decoder
+// Instagram encodes a 64-bit ID in the shortcode. The high bits contain a unix timestamp.
+
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+
+function shortcodeToTimestamp(shortcode) {
+  // Decode base64url to bigint
+  let n = BigInt(0);
+  for (const c of shortcode) {
+    const idx = ALPHABET.indexOf(c);
+    if (idx === -1) throw new Error('Invalid character in shortcode');
+    n = n * BigInt(64) + BigInt(idx);
+  }
+  // Instagram media ID: timestamp is upper bits minus epoch offset
+  // Instagram epoch: 2011-01-01 00:00:00 UTC = 1293840000 seconds
+  const INSTAGRAM_EPOCH = BigInt(1314220021721); // milliseconds
+  const timestamp_ms = (n >> BigInt(23)) + INSTAGRAM_EPOCH;
+  return Number(timestamp_ms);
+}
+
+function extractShortcode(url) {
+  url = url.trim();
+  // Match /p/CODE/ or /reel/CODE/ or /tv/CODE/
+  const match = url.match(/instagram\.com\/(?:p|reel|tv|reels)\/([A-Za-z0-9_-]+)/);
+  if (match) return match[1];
+  // Maybe they pasted just a shortcode?
+  if (/^[A-Za-z0-9_-]{8,14}$/.test(url)) return url;
+  return null;
+}
+
+function timeAgo(ms) {
+  const diff = Date.now() - ms;
+  const s = Math.floor(diff / 1000);
+  const m = Math.floor(s / 60);
+  const h = Math.floor(m / 60);
+  const d = Math.floor(h / 24);
+  const mo = Math.floor(d / 30);
+  const y = Math.floor(d / 365);
+  if (y > 0) return `${y} year${y > 1 ? 's' : ''} ago`;
+  if (mo > 0) return `${mo} month${mo > 1 ? 's' : ''} ago`;
+  if (d > 0) return `${d} day${d > 1 ? 's' : ''} ago`;
+  if (h > 0) return `${h} hour${h > 1 ? 's' : ''} ago`;
+  if (m > 0) return `${m} minute${m > 1 ? 's' : ''} ago`;
+  return 'Just now';
+}
+
+function ageBarPercent(ms) {
+  // 0% = just now, 100% = 5+ years ago
+  const diff = Date.now() - ms;
+  const fiveYears = 5 * 365 * 24 * 60 * 60 * 1000;
+  return Math.min(100, (diff / fiveYears) * 100);
+}
+
+function formatDate(date) {
+  return date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function formatTime(date) {
+  return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+}
+
+function formatUTC(date) {
+  return date.toUTCString().replace(' GMT', ' UTC');
+}
+
+function checkPost() {
+  const input = document.getElementById('urlInput').value;
+  const card = document.getElementById('resultCard');
+  const btn = document.getElementById('checkBtn');
+
+  card.className = 'result-card';
+  card.innerHTML = '';
+
+  if (!input.trim()) {
+    showError(card, 'Please paste an Instagram post URL first.');
+    return;
+  }
+
+  const shortcode = extractShortcode(input);
+  if (!shortcode) {
+    showError(card, 'That doesn\'t look like a valid Instagram URL. Try something like:<br><code style="color:var(--accent)">https://www.instagram.com/p/ABC123xyz/</code>');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Decoding...';
+
+  setTimeout(() => {
+    try {
+      const ts = shortcodeToTimestamp(shortcode);
+      const date = new Date(ts);
+
+      // Sanity check: must be after Instagram launch (Oct 2010) and not in the future
+      if (ts < 1286000000000 || ts > Date.now() + 60000) {
+        throw new Error('Timestamp out of valid range');
+      }
+
+      showSuccess(card, date, shortcode);
+    } catch(e) {
+      showError(card, 'Couldn\'t decode this URL. Make sure it\'s a public Instagram post or reel link.<br><small style="color:var(--muted);margin-top:6px;display:block">Note: Stories and profile links are not supported — posts and reels only.</small>');
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Check Time →';
+  }, 300);
+}
+
+function showSuccess(card, date, shortcode) {
+  const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const pct = ageBarPercent(date.getTime());
+
+  card.innerHTML = `
+    <div class="result-label">✓ Timestamp decoded</div>
+    <div class="result-shortcode">Shortcode: <span>${shortcode}</span></div>
+
+    <div class="time-grid">
+      <div class="time-block">
+        <div class="time-block-label">Date</div>
+        <div class="time-block-value">${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+        <div class="time-block-sub">${date.toLocaleDateString('en-US', { weekday: 'long' })}</div>
+      </div>
+      <div class="time-block">
+        <div class="time-block-label">Time (your local)</div>
+        <div class="time-block-value">${formatTime(date)}</div>
+        <div class="time-block-sub">${userTZ}</div>
+      </div>
+    </div>
+
+    <div class="age-bar-wrap">
+      <div class="age-bar-label">
+        <span>Post age</span>
+        <span style="color:var(--text)">${timeAgo(date.getTime())}</span>
+      </div>
+      <div class="age-bar-track">
+        <div class="age-bar-fill" id="ageBarFill"></div>
+      </div>
+    </div>
+
+    <div class="timezone-note">UTC: ${date.toUTCString()}</div>
+  `;
+  card.classList.add('result-card', 'visible', 'success');
+
+  // Animate bar
+  setTimeout(() => {
+    const fill = document.getElementById('ageBarFill');
+    if (fill) fill.style.width = pct + '%';
+  }, 50);
+}
+
+function showError(card, msg) {
+  card.innerHTML = `<div class="error-msg">${msg}</div>`;
+  card.classList.add('result-card', 'visible', 'error');
+}
+
+// Allow Enter key
+document.getElementById('urlInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPost();
+});
+</script>
+</body>
+</html>
