@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5196914733161173"
-     crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PostTime — See When It Was Posted</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5196914733161173" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>InstaTimestamp — See Exactly When Any Instagram Post Was Posted</title>
+  <meta name="description" content="Find the exact time and date any Instagram post or reel was published. Free Instagram timestamp checker — no login needed." />
+  <meta name="keywords" content="instagram post timestamp, find instagram post time, instagram date finder, when was instagram post posted, instagram time checker, exact instagram post time" />
+  <meta name="author" content="InstaTimestamp" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="InstaTimestamp — See Exactly When Any Instagram Post Was Posted" />
+  <meta property="og:description" content="Paste any Instagram post or reel link and instantly see the exact date and time it was posted." />
+  <meta property="og:url" content="https://instatimestamp.com" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="InstaTimestamp — See Exactly When Any Instagram Post Was Posted" />
+  <meta name="twitter:description" content="Paste any Instagram post or reel link and instantly see the exact date and time it was posted." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0f;
@@ -31,7 +48,6 @@
     overflow-x: hidden;
   }
 
-  /* Atmospheric background */
   body::before {
     content: '';
     position: fixed;
@@ -56,7 +72,6 @@
     position: relative; z-index: 1;
   }
 
-  /* Header */
   .badge {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(255,107,53,0.1);
@@ -100,7 +115,6 @@
     animation: fadeUp 0.6s 0.2s ease both;
   }
 
-  /* Input area */
   .input-section {
     animation: fadeUp 0.6s 0.3s ease both;
   }
@@ -162,7 +176,6 @@
     line-height: 1.6;
   }
 
-  /* Result card */
   .result-card {
     margin-top: 36px;
     background: var(--card);
@@ -264,7 +277,6 @@
     font-size: 13px;
   }
 
-  /* Error state */
   .error-msg {
     color: var(--accent);
     font-size: 13px;
@@ -273,7 +285,6 @@
   }
   .error-msg::before { content: '⚠'; flex-shrink: 0; }
 
-  /* How-to section */
   .howto {
     margin-top: 60px;
     animation: fadeUp 0.6s 0.5s ease both;
@@ -313,16 +324,21 @@
   }
   .step-text strong { color: var(--text); }
 
-  /* Footer */
   .footer {
     margin-top: 60px;
     padding-top: 24px;
     border-top: 1px solid var(--border);
     font-size: 11px;
     color: var(--muted);
-    display: flex; justify-content: space-between;
+    display: flex; justify-content: space-between; align-items: center;
     animation: fadeUp 0.6s 0.6s ease both;
   }
+  .footer a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer a:hover { color: var(--accent); }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -365,9 +381,7 @@
     <p class="hint">Works with /p/ posts and /reel/ reels. No data is sent anywhere — everything runs in your browser.</p>
   </div>
 
-  <div class="result-card" id="resultCard">
-    <!-- filled by JS -->
-  </div>
+  <div class="result-card" id="resultCard"></div>
 
   <div class="howto">
     <div class="howto-title">How to use</div>
@@ -392,38 +406,30 @@
   </div>
 
   <div class="footer">
-    <span>PostTime — your browser, your data</span>
-    <span>Works offline after first load</span>
+    <span>InstaTimestamp — your browser, your data</span>
+    <a href="/privacy.html">Privacy Policy</a>
   </div>
 </div>
 
 <script>
-// Instagram shortcode → timestamp decoder
-// Instagram encodes a 64-bit ID in the shortcode. The high bits contain a unix timestamp.
-
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 
 function shortcodeToTimestamp(shortcode) {
-  // Decode base64url to bigint
   let n = BigInt(0);
   for (const c of shortcode) {
     const idx = ALPHABET.indexOf(c);
     if (idx === -1) throw new Error('Invalid character in shortcode');
     n = n * BigInt(64) + BigInt(idx);
   }
-  // Instagram media ID: timestamp is upper bits minus epoch offset
-  // Instagram epoch: 2011-01-01 00:00:00 UTC = 1293840000 seconds
-  const INSTAGRAM_EPOCH = BigInt(1314220021721); // milliseconds
+  const INSTAGRAM_EPOCH = BigInt(1314220021721);
   const timestamp_ms = (n >> BigInt(23)) + INSTAGRAM_EPOCH;
   return Number(timestamp_ms);
 }
 
 function extractShortcode(url) {
   url = url.trim();
-  // Match /p/CODE/ or /reel/CODE/ or /tv/CODE/
   const match = url.match(/instagram\.com\/(?:p|reel|tv|reels)\/([A-Za-z0-9_-]+)/);
   if (match) return match[1];
-  // Maybe they pasted just a shortcode?
   if (/^[A-Za-z0-9_-]{8,14}$/.test(url)) return url;
   return null;
 }
@@ -445,22 +451,13 @@ function timeAgo(ms) {
 }
 
 function ageBarPercent(ms) {
-  // 0% = just now, 100% = 5+ years ago
   const diff = Date.now() - ms;
   const fiveYears = 5 * 365 * 24 * 60 * 60 * 1000;
   return Math.min(100, (diff / fiveYears) * 100);
 }
 
-function formatDate(date) {
-  return date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-}
-
 function formatTime(date) {
   return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-}
-
-function formatUTC(date) {
-  return date.toUTCString().replace(' GMT', ' UTC');
 }
 
 function checkPost() {
@@ -490,7 +487,6 @@ function checkPost() {
       const ts = shortcodeToTimestamp(shortcode);
       const date = new Date(ts);
 
-      // Sanity check: must be after Instagram launch (Oct 2010) and not in the future
       if (ts < 1286000000000 || ts > Date.now() + 60000) {
         throw new Error('Timestamp out of valid range');
       }
@@ -512,7 +508,6 @@ function showSuccess(card, date, shortcode) {
   card.innerHTML = `
     <div class="result-label">✓ Timestamp decoded</div>
     <div class="result-shortcode">Shortcode: <span>${shortcode}</span></div>
-
     <div class="time-grid">
       <div class="time-block">
         <div class="time-block-label">Date</div>
@@ -525,7 +520,6 @@ function showSuccess(card, date, shortcode) {
         <div class="time-block-sub">${userTZ}</div>
       </div>
     </div>
-
     <div class="age-bar-wrap">
       <div class="age-bar-label">
         <span>Post age</span>
@@ -535,12 +529,10 @@ function showSuccess(card, date, shortcode) {
         <div class="age-bar-fill" id="ageBarFill"></div>
       </div>
     </div>
-
     <div class="timezone-note">UTC: ${date.toUTCString()}</div>
   `;
   card.classList.add('result-card', 'visible', 'success');
 
-  // Animate bar
   setTimeout(() => {
     const fill = document.getElementById('ageBarFill');
     if (fill) fill.style.width = pct + '%';
@@ -552,11 +544,9 @@ function showError(card, msg) {
   card.classList.add('result-card', 'visible', 'error');
 }
 
-// Allow Enter key
 document.getElementById('urlInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') checkPost();
 });
 </script>
 </body>
 </html>
-<a href="/privacy.html">Privacy Policy</a>
