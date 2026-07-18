@@ -4,412 +4,833 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5196914733161173" crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- SEO -->
   <title>InstaTimestamp — See Exactly When Any Instagram Post Was Posted</title>
   <meta name="description" content="Find the exact time and date any Instagram post or reel was published. Free Instagram timestamp checker — no login needed." />
   <meta name="keywords" content="instagram post timestamp, find instagram post time, instagram date finder, when was instagram post posted, instagram time checker, exact instagram post time" />
   <meta name="author" content="InstaTimestamp" />
   <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph -->
   <meta property="og:title" content="InstaTimestamp — See Exactly When Any Instagram Post Was Posted" />
   <meta property="og:description" content="Paste any Instagram post or reel link and instantly see the exact date and time it was posted." />
   <meta property="og:url" content="https://instatimestamp.com" />
   <meta property="og:type" content="website" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="InstaTimestamp — See Exactly When Any Instagram Post Was Posted" />
   <meta name="twitter:description" content="Paste any Instagram post or reel link and instantly see the exact date and time it was posted." />
-
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --card: #16161f;
-    --border: #2a2a3a;
-    --accent: #ff6b35;
-    --accent2: #ff9f1c;
-    --text: #f0eeff;
-    --muted: #7070a0;
-    --success: #4ade80;
-    --glow: rgba(255, 107, 53, 0.15);
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0f0f0f;
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+  --accent: #4f46e5;
+  --accent-light: #eef2ff;
+  --accent-hover: #4338ca;
+  --success: #16a34a;
+  --success-light: #f0fdf4;
+  --error: #dc2626;
+  --error-light: #fef2f2;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--black);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  body::before {
-    content: '';
-    position: fixed;
-    top: -200px; left: 50%;
-    transform: translateX(-50%);
-    width: 800px; height: 600px;
-    background: radial-gradient(ellipse, rgba(255,107,53,0.08) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+a { color: inherit; text-decoration: none; }
 
-  .grain {
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0; opacity: 0.4;
-  }
+/* ── NAVBAR ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 24px;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 16px; font-weight: 700; color: var(--black);
+  letter-spacing: -0.02em;
+}
+.nav-logo-icon {
+  width: 30px; height: 30px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 14px; font-weight: 800;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 28px;
+}
+.nav-links a {
+  font-size: 14px; color: var(--gray-600); font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--black); }
+.nav-cta {
+  background: var(--black);
+  color: var(--white) !important;
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+.nav-cta:hover { background: var(--gray-800) !important; color: var(--white) !important; }
 
-  .container {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 60px 24px 80px;
-    position: relative; z-index: 1;
-  }
+/* ── HERO ── */
+.hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 72px 24px 80px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 12px; font-weight: 600;
+  padding: 5px 12px; border-radius: 20px;
+  margin-bottom: 24px;
+  letter-spacing: 0.01em;
+}
+.hero-badge-dot {
+  width: 5px; height: 5px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 18px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 16px;
+  color: var(--gray-600);
+  max-width: 520px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
 
-  .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,107,53,0.1);
-    border: 1px solid rgba(255,107,53,0.3);
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 11px; letter-spacing: 0.12em;
-    color: var(--accent); text-transform: uppercase;
-    margin-bottom: 28px;
-    animation: fadeUp 0.6s ease both;
-  }
-  .badge-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s infinite;
-  }
+/* ── TOOL BOX ── */
+.tool-box {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  text-align: left;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  max-width: 620px;
+  margin: 0 auto;
+}
+.tool-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-600);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.tool-row {
+  display: flex; gap: 10px; margin-bottom: 10px;
+}
+.tool-input {
+  flex: 1;
+  height: 44px;
+  padding: 0 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--black);
+  background: var(--gray-50);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.tool-input::placeholder { color: var(--gray-400); }
+.tool-input:focus {
+  border-color: var(--accent);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+}
+.tool-btn {
+  height: 44px;
+  padding: 0 20px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.tool-btn:hover { background: var(--accent-hover); }
+.tool-btn:active { transform: scale(0.98); }
+.tool-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.tool-hint {
+  font-size: 12px;
+  color: var(--gray-400);
+  line-height: 1.5;
+}
 
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.4rem, 6vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 16px;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-  h1 span {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+/* ── RESULT ── */
+.result {
+  margin-top: 20px;
+  border-radius: var(--radius);
+  padding: 20px;
+  display: none;
+}
+.result.visible { display: block; }
+.result.success {
+  background: var(--success-light);
+  border: 1px solid #bbf7d0;
+}
+.result.error {
+  background: var(--error-light);
+  border: 1px solid #fecaca;
+}
+.result-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--success);
+  margin-bottom: 14px;
+}
+.result.error .result-title { color: var(--error); }
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.result-block {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+.result-block-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 4px;
+}
+.result-block-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.result-block-sub {
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-top: 2px;
+}
+.result-age {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.result-age-top {
+  display: flex; justify-content: space-between;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-400); margin-bottom: 8px;
+}
+.result-age-top span:last-child { color: var(--black); }
+.age-track {
+  height: 5px; background: var(--gray-100);
+  border-radius: 3px; overflow: hidden;
+}
+.age-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  width: 0%;
+  transition: width 1s cubic-bezier(0.22,1,0.36,1);
+}
+.result-utc {
+  font-size: 11px; color: var(--gray-400);
+}
+.error-msg {
+  font-size: 13px; color: var(--error); line-height: 1.6;
+}
 
-  .subtitle {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 48px;
-    max-width: 480px;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
+/* ── TRUST BAR ── */
+.trust {
+  border-top: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+  background: var(--gray-50);
+  padding: 16px 24px;
+  display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--gray-600); font-weight: 500;
+}
+.trust-icon {
+  width: 18px; height: 18px;
+  color: var(--accent);
+  font-size: 14px;
+}
 
-  .input-section {
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
+/* ── SECTIONS ── */
+.section {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+.section-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--black);
+  margin-bottom: 14px;
+}
+.section-sub {
+  font-size: 16px;
+  color: var(--gray-600);
+  max-width: 540px;
+  line-height: 1.7;
+}
+.divider { border: none; border-top: 1px solid var(--gray-100); }
 
-  .input-label {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-    display: block;
-  }
+/* ── HOW IT WORKS ── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+.step-card {
+  padding: 28px 24px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+}
+.step-num {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  color: var(--white);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  margin-bottom: 16px;
+}
+.step-card h3 {
+  font-size: 15px; font-weight: 700;
+  color: var(--black); margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.step-card p {
+  font-size: 13px; color: var(--gray-600); line-height: 1.6;
+}
 
-  .input-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
+/* ── FEATURES ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 48px;
+}
+.feature-card {
+  padding: 28px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.feature-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(79,70,229,0.08);
+}
+.feature-icon {
+  width: 44px; height: 44px;
+  background: var(--accent-light);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.feature-tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 4px;
+  margin-bottom: 12px;
+}
+.tag-free { background: #dcfce7; color: #15803d; }
+.tag-pro { background: var(--accent-light); color: var(--accent); }
+.feature-card h3 {
+  font-size: 16px; font-weight: 700;
+  color: var(--black); margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.feature-card p {
+  font-size: 13px; color: var(--gray-600); line-height: 1.65;
+}
 
-  .url-input {
-    flex: 1;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 18px;
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .url-input::placeholder { color: var(--muted); }
-  .url-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--glow);
-  }
+/* ── PRICING ── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 48px;
+}
+.pricing-card {
+  padding: 28px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  position: relative;
+}
+.pricing-card.featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(79,70,229,0.07);
+}
+.pricing-popular {
+  position: absolute;
+  top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--accent);
+  color: white;
+  font-size: 11px; font-weight: 700;
+  padding: 4px 14px; border-radius: 20px;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.pricing-plan {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gray-600); margin-bottom: 10px;
+}
+.pricing-price {
+  font-size: 36px; font-weight: 700;
+  letter-spacing: -0.04em; color: var(--black);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.pricing-price sup { font-size: 18px; vertical-align: super; }
+.pricing-period {
+  font-size: 13px; color: var(--gray-400); margin-bottom: 20px;
+}
+.pricing-divider {
+  border: none; border-top: 1px solid var(--gray-100); margin-bottom: 20px;
+}
+.pricing-features {
+  list-style: none; margin-bottom: 24px;
+}
+.pricing-features li {
+  font-size: 13px; color: var(--gray-600);
+  padding: 5px 0;
+  display: flex; align-items: flex-start; gap: 8px;
+  line-height: 1.5;
+}
+.pricing-features li::before {
+  content: '✓';
+  color: var(--success);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.pricing-btn {
+  display: block; width: 100%;
+  padding: 11px;
+  border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.15s;
+}
+.pricing-btn:hover { border-color: var(--black); }
+.pricing-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+.pricing-btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 
-  .check-btn {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    border: none;
-    border-radius: 10px;
-    padding: 14px 24px;
-    color: #fff;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    cursor: pointer;
-    letter-spacing: 0.04em;
-    transition: opacity 0.2s, transform 0.15s;
-    white-space: nowrap;
-  }
-  .check-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-  .check-btn:active { transform: translateY(0); }
-  .check-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+/* ── FAQ ── */
+.faq-list { margin-top: 48px; max-width: 680px; }
+.faq-item {
+  border-bottom: 1px solid var(--gray-200);
+  padding: 20px 0;
+}
+.faq-q {
+  font-size: 15px; font-weight: 600;
+  color: var(--black); cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px;
+}
+.faq-toggle {
+  width: 22px; height: 22px; flex-shrink: 0;
+  background: var(--gray-100); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--gray-600);
+  transition: transform 0.2s;
+}
+.faq-a {
+  font-size: 14px; color: var(--gray-600);
+  line-height: 1.7;
+  margin-top: 12px;
+  display: none;
+}
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
 
-  .hint {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
+/* ── FOOTER ── */
+.footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 40px 24px;
+}
+.footer-inner {
+  max-width: 1040px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-logo {
+  font-size: 15px; font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.footer-logo em { color: #818cf8; font-style: normal; }
+.footer-links {
+  display: flex; gap: 24px;
+}
+.footer-links a {
+  font-size: 13px; color: #9ca3af;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-copy {
+  font-size: 12px; color: #6b7280;
+  width: 100%; margin-top: 8px;
+}
 
-  .result-card {
-    margin-top: 36px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    display: none;
-    animation: fadeUp 0.4s ease both;
-  }
-  .result-card.visible { display: block; }
-  .result-card.success { border-color: rgba(74,222,128,0.3); }
-  .result-card.error { border-color: rgba(255,107,53,0.3); }
+/* ── ANIMATIONS ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero > * { animation: fadeUp 0.5s ease both; }
+.hero > *:nth-child(2) { animation-delay: 0.05s; }
+.hero > *:nth-child(3) { animation-delay: 0.1s; }
+.hero > *:nth-child(4) { animation-delay: 0.15s; }
+.hero > *:nth-child(5) { animation-delay: 0.2s; }
 
-  .result-label {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
-  .result-shortcode {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 20px;
-    word-break: break-all;
-  }
-  .result-shortcode span { color: var(--accent); }
-
-  .time-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-
-  .time-block {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-  }
-  .time-block-label {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  .time-block-value {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.2;
-  }
-  .time-block-sub {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  .age-bar-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 16px;
-  }
-  .age-bar-label {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-    display: flex; justify-content: space-between;
-  }
-  .age-bar-track {
-    height: 6px;
-    background: var(--border);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .age-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 3px;
-    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
-    width: 0%;
-  }
-
-  .timezone-note {
-    font-size: 11px;
-    color: var(--muted);
-    display: flex; align-items: center; gap: 6px;
-  }
-  .timezone-note::before {
-    content: '⏱';
-    font-size: 13px;
-  }
-
-  .error-msg {
-    color: var(--accent);
-    font-size: 13px;
-    display: flex; align-items: flex-start; gap: 8px;
-    line-height: 1.6;
-  }
-  .error-msg::before { content: '⚠'; flex-shrink: 0; }
-
-  .howto {
-    margin-top: 60px;
-    animation: fadeUp 0.6s 0.5s ease both;
-  }
-  .howto-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-  .steps {
-    display: flex; flex-direction: column; gap: 0;
-  }
-  .step {
-    display: flex; align-items: flex-start; gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .step:last-child { border-bottom: none; }
-  .step-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px; font-weight: 800;
-    color: var(--accent);
-    background: rgba(255,107,53,0.08);
-    border: 1px solid rgba(255,107,53,0.2);
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .step-text {
-    font-size: 13px; color: var(--muted); line-height: 1.6;
-    padding-top: 4px;
-  }
-  .step-text strong { color: var(--text); }
-
-  .footer {
-    margin-top: 60px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    font-size: 11px;
-    color: var(--muted);
-    display: flex; justify-content: space-between; align-items: center;
-    animation: fadeUp 0.6s 0.6s ease both;
-  }
-  .footer a {
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer a:hover { color: var(--accent); }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  @media (max-width: 480px) {
-    .input-row { flex-direction: column; }
-    .time-grid { grid-template-columns: 1fr; }
-    .footer { flex-direction: column; gap: 8px; }
-  }
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .tool-row { flex-direction: column; }
+  .result-grid { grid-template-columns: 1fr; }
+  .trust { gap: 16px; justify-content: flex-start; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .pricing-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
-<div class="grain"></div>
 
-<div class="container">
-  <div class="badge"><span class="badge-dot"></span> Free · No login needed</div>
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">IT</div>
+    InstaTimestamp
+  </div>
+  <div class="nav-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#pricing" class="nav-cta">Get Pro</a>
+  </div>
+</nav>
 
-  <h1>See <span>exactly when</span><br>it was posted.</h1>
-  <p class="subtitle">Instagram hides exact post times on mobile. Paste any post URL below — we decode the timestamp straight from the post ID.</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Free — no login needed
+  </div>
+  <h1>Find out <em>exactly when</em><br>any Instagram post was made.</h1>
+  <p class="hero-sub">Instagram hides exact post times on mobile. Paste any post or reel URL below and get the precise date and time — decoded instantly in your browser.</p>
 
-  <div class="input-section">
-    <label class="input-label" for="urlInput">Instagram post URL</label>
-    <div class="input-row">
+  <div class="tool-box">
+    <div class="tool-label">Instagram post or reel URL</div>
+    <div class="tool-row">
       <input
-        class="url-input"
+        class="tool-input"
         id="urlInput"
         type="url"
         placeholder="https://www.instagram.com/p/ABC123xyz/"
         autocomplete="off"
         spellcheck="false"
       />
-      <button class="check-btn" id="checkBtn" onclick="checkPost()">Check Time →</button>
+      <button class="tool-btn" id="checkBtn" onclick="checkPost()">Check time →</button>
     </div>
-    <p class="hint">Works with /p/ posts and /reel/ reels. No data is sent anywhere — everything runs in your browser.</p>
-  </div>
+    <p class="tool-hint">Works with /p/ posts and /reel/ reels. Nothing is stored — all processing happens in your browser.</p>
 
-  <div class="result-card" id="resultCard"></div>
-
-  <div class="howto">
-    <div class="howto-title">How to use</div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Open Instagram and find the post you're curious about.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">Tap the <strong>⋯ menu → Copy link</strong> (or on desktop, click the post and copy the URL from your browser).</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Paste the link above and hit <strong>Check Time</strong>. The exact date and time will appear instantly.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-text"><strong>How does it work?</strong> Instagram's post shortcodes contain an encoded timestamp. We decode it locally in your browser — no API calls, no account needed.</div>
-      </div>
-    </div>
+    <div class="result" id="resultCard"></div>
   </div>
+</section>
 
-  <div class="footer">
-    <span>InstaTimestamp — your browser, your data</span>
-    <a href="/privacy.html">Privacy Policy</a>
-  </div>
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-item"><span class="trust-icon">🔒</span> No login required</div>
+  <div class="trust-item"><span class="trust-icon">⚡</span> Instant results</div>
+  <div class="trust-item"><span class="trust-icon">🛡</span> No data stored</div>
+  <div class="trust-item"><span class="trust-icon">📱</span> Works on mobile</div>
 </div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="section-eyebrow">How it works</div>
+  <h2 class="section-title">Three steps to the exact timestamp.</h2>
+  <p class="section-sub">Instagram encodes the post time inside every post URL. We decode it — no API, no scraping, no account needed.</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Find the post on Instagram</h3>
+      <p>Open Instagram on your phone or browser and find the post or reel you want to check.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>Copy the link</h3>
+      <p>Tap the three-dot menu → Copy link. On desktop, just copy the URL from your browser's address bar.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Paste and check</h3>
+      <p>Paste the link above and hit Check time. The exact date, time, and post age appear instantly.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h3>Why it works</h3>
+      <p>Every Instagram post ID contains an encoded Unix timestamp. InstaTimestamp decodes that number locally in your browser — no servers involved.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-eyebrow">Features</div>
+  <h2 class="section-title">Everything you need to understand Instagram timing.</h2>
+  <p class="section-sub">Start free. Upgrade when you need deeper intelligence.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🕐</div>
+      <div class="feature-tag tag-free">Free</div>
+      <h3>Exact timestamp</h3>
+      <p>See the precise date, time, day of week, and post age for any Instagram post or reel. No guessing from "3 days ago."</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-tag tag-pro">Pro</div>
+      <h3>Trend tracking</h3>
+      <p>Track how posting frequency changes over time for any public creator. Spot when they go quiet — or when they ramp up.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <div class="feature-tag tag-pro">Pro</div>
+      <h3>Creator intelligence</h3>
+      <p>Discover which days and times any creator posts most, and whether their timing correlates with higher engagement.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <div class="feature-tag tag-pro">Pro</div>
+      <h3>Niche analytics</h3>
+      <p>See when Fashion, Food, Finance, Fitness creators post across thousands of data points — so you can post smarter.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <div class="feature-tag tag-free">Free</div>
+      <h3>100% private</h3>
+      <p>All timestamp decoding runs entirely in your browser. No URLs you enter are ever sent to our servers or stored anywhere.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <div class="feature-tag tag-free">Free</div>
+      <h3>Works on any device</h3>
+      <p>Unlike browser extensions, InstaTimestamp works on iPhone, Android, and desktop — no installation required.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-eyebrow">Pricing</div>
+  <h2 class="section-title">Simple, honest pricing.</h2>
+  <p class="section-sub">Free forever for the core tool. Upgrade for deeper analytics and creator intelligence.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-plan">Free</div>
+      <div class="pricing-price">₹0</div>
+      <div class="pricing-period">forever</div>
+      <hr class="pricing-divider">
+      <ul class="pricing-features">
+        <li>Unlimited timestamp checks</li>
+        <li>Exact date, time and post age</li>
+        <li>Works on mobile and desktop</li>
+        <li>No login required</li>
+        <li>100% private — no data stored</li>
+      </ul>
+      <button class="pricing-btn" onclick="document.getElementById('urlInput').focus()">Start for free</button>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-popular">Most popular</div>
+      <div class="pricing-plan">Pro</div>
+      <div class="pricing-price"><sup>₹</sup>499</div>
+      <div class="pricing-period">per month</div>
+      <hr class="pricing-divider">
+      <ul class="pricing-features">
+        <li>Everything in Free</li>
+        <li>Trend tracking for any creator</li>
+        <li>Creator intelligence reports</li>
+        <li>Niche posting time analytics</li>
+        <li>Dashboard with saved history</li>
+        <li>Priority support</li>
+      </ul>
+      <button class="pricing-btn primary">Get Pro — coming soon</button>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-plan">Agency</div>
+      <div class="pricing-price"><sup>₹</sup>1,999</div>
+      <div class="pricing-period">per month</div>
+      <hr class="pricing-divider">
+      <ul class="pricing-features">
+        <li>Everything in Pro</li>
+        <li>Up to 10 team members</li>
+        <li>Bulk URL checking</li>
+        <li>Export reports as CSV</li>
+        <li>White-label reports</li>
+        <li>Dedicated account manager</li>
+      </ul>
+      <button class="pricing-btn">Contact us</button>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-eyebrow">FAQ</div>
+  <h2 class="section-title">Common questions.</h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Does this work for private Instagram accounts?
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">No. InstaTimestamp works only with public posts and reels. Private account URLs will not return a valid result since they require authentication to access.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Does it work for Instagram Stories?
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Not currently. Stories use a different URL format and expire after 24 hours. InstaTimestamp supports posts (/p/) and reels (/reel/) only.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is the timestamp 100% accurate?
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">It is accurate to within a second. The timestamp is decoded directly from Instagram's post ID — the same data Instagram uses internally. It is not an estimate.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Do you store the URLs I paste?
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">No. All decoding happens inside your browser using JavaScript. Nothing you paste is ever sent to our servers. We have no access to the URLs you check.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Why does Instagram hide exact post times?
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Instagram shows relative times like "3 days ago" or "2 weeks ago" to keep the interface clean and simple — especially on mobile. The exact time is available on desktop by hovering over the timestamp, but this is hidden on the mobile app entirely.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        When is the Pro plan launching?
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Pro is coming soon. Join the waitlist and you will be the first to know — and get a founding member discount when it launches.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo"><em>Insta</em>Timestamp</div>
+    <div class="footer-links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/privacy.html">Privacy policy</a>
+    </div>
+    <div class="footer-copy">© 2026 InstaTimestamp. All rights reserved. Not affiliated with Instagram or Meta.</div>
+  </div>
+</footer>
 
 <script>
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
@@ -418,12 +839,11 @@ function shortcodeToTimestamp(shortcode) {
   let n = BigInt(0);
   for (const c of shortcode) {
     const idx = ALPHABET.indexOf(c);
-    if (idx === -1) throw new Error('Invalid character in shortcode');
+    if (idx === -1) throw new Error('Invalid character');
     n = n * BigInt(64) + BigInt(idx);
   }
   const INSTAGRAM_EPOCH = BigInt(1314220021721);
-  const timestamp_ms = (n >> BigInt(23)) + INSTAGRAM_EPOCH;
-  return Number(timestamp_ms);
+  return Number((n >> BigInt(23)) + INSTAGRAM_EPOCH);
 }
 
 function extractShortcode(url) {
@@ -436,24 +856,17 @@ function extractShortcode(url) {
 
 function timeAgo(ms) {
   const diff = Date.now() - ms;
-  const s = Math.floor(diff / 1000);
-  const m = Math.floor(s / 60);
+  const m = Math.floor(diff / 60000);
   const h = Math.floor(m / 60);
   const d = Math.floor(h / 24);
   const mo = Math.floor(d / 30);
   const y = Math.floor(d / 365);
-  if (y > 0) return `${y} year${y > 1 ? 's' : ''} ago`;
-  if (mo > 0) return `${mo} month${mo > 1 ? 's' : ''} ago`;
-  if (d > 0) return `${d} day${d > 1 ? 's' : ''} ago`;
-  if (h > 0) return `${h} hour${h > 1 ? 's' : ''} ago`;
-  if (m > 0) return `${m} minute${m > 1 ? 's' : ''} ago`;
+  if (y > 0) return y + ' year' + (y > 1 ? 's' : '') + ' ago';
+  if (mo > 0) return mo + ' month' + (mo > 1 ? 's' : '') + ' ago';
+  if (d > 0) return d + ' day' + (d > 1 ? 's' : '') + ' ago';
+  if (h > 0) return h + ' hour' + (h > 1 ? 's' : '') + ' ago';
+  if (m > 0) return m + ' minute' + (m > 1 ? 's' : '') + ' ago';
   return 'Just now';
-}
-
-function ageBarPercent(ms) {
-  const diff = Date.now() - ms;
-  const fiveYears = 5 * 365 * 24 * 60 * 60 * 1000;
-  return Math.min(100, (diff / fiveYears) * 100);
 }
 
 function formatTime(date) {
@@ -465,17 +878,19 @@ function checkPost() {
   const card = document.getElementById('resultCard');
   const btn = document.getElementById('checkBtn');
 
-  card.className = 'result-card';
+  card.className = 'result';
   card.innerHTML = '';
 
   if (!input.trim()) {
-    showError(card, 'Please paste an Instagram post URL first.');
+    card.innerHTML = '<div class="error-msg">Please paste an Instagram post URL first.</div>';
+    card.classList.add('result', 'visible', 'error');
     return;
   }
 
   const shortcode = extractShortcode(input);
   if (!shortcode) {
-    showError(card, 'That doesn\'t look like a valid Instagram URL. Try something like:<br><code style="color:var(--accent)">https://www.instagram.com/p/ABC123xyz/</code>');
+    card.innerHTML = '<div class="error-msg">That doesn\'t look like a valid Instagram URL. Make sure it contains /p/ or /reel/ in the link.</div>';
+    card.classList.add('result', 'visible', 'error');
     return;
   }
 
@@ -487,61 +902,46 @@ function checkPost() {
       const ts = shortcodeToTimestamp(shortcode);
       const date = new Date(ts);
 
-      if (ts < 1286000000000 || ts > Date.now() + 60000) {
-        throw new Error('Timestamp out of valid range');
-      }
+      if (ts < 1286000000000 || ts > Date.now() + 60000) throw new Error('Out of range');
 
-      showSuccess(card, date, shortcode);
+      const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const pct = Math.min(100, ((Date.now() - ts) / (5 * 365 * 24 * 60 * 60 * 1000)) * 100);
+
+      card.innerHTML = `
+        <div class="result-title">✓ Timestamp decoded</div>
+        <div class="result-grid">
+          <div class="result-block">
+            <div class="result-block-label">Date</div>
+            <div class="result-block-value">${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+            <div class="result-block-sub">${date.toLocaleDateString('en-US', { weekday: 'long' })}</div>
+          </div>
+          <div class="result-block">
+            <div class="result-block-label">Time (your local)</div>
+            <div class="result-block-value">${formatTime(date)}</div>
+            <div class="result-block-sub">${userTZ}</div>
+          </div>
+        </div>
+        <div class="result-age">
+          <div class="result-age-top"><span>Post age</span><span>${timeAgo(ts)}</span></div>
+          <div class="age-track"><div class="age-fill" id="ageFill"></div></div>
+        </div>
+        <div class="result-utc">UTC: ${date.toUTCString()}</div>
+      `;
+      card.classList.add('result', 'visible', 'success');
+      setTimeout(() => { const f = document.getElementById('ageFill'); if (f) f.style.width = pct + '%'; }, 50);
+
     } catch(e) {
-      showError(card, 'Couldn\'t decode this URL. Make sure it\'s a public Instagram post or reel link.<br><small style="color:var(--muted);margin-top:6px;display:block">Note: Stories and profile links are not supported — posts and reels only.</small>');
+      card.innerHTML = '<div class="error-msg">Couldn\'t decode this URL. Make sure it\'s a public Instagram post or reel link. Stories and profile links are not supported.</div>';
+      card.classList.add('result', 'visible', 'error');
     }
 
     btn.disabled = false;
-    btn.textContent = 'Check Time →';
+    btn.textContent = 'Check time →';
   }, 300);
 }
 
-function showSuccess(card, date, shortcode) {
-  const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const pct = ageBarPercent(date.getTime());
-
-  card.innerHTML = `
-    <div class="result-label">✓ Timestamp decoded</div>
-    <div class="result-shortcode">Shortcode: <span>${shortcode}</span></div>
-    <div class="time-grid">
-      <div class="time-block">
-        <div class="time-block-label">Date</div>
-        <div class="time-block-value">${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
-        <div class="time-block-sub">${date.toLocaleDateString('en-US', { weekday: 'long' })}</div>
-      </div>
-      <div class="time-block">
-        <div class="time-block-label">Time (your local)</div>
-        <div class="time-block-value">${formatTime(date)}</div>
-        <div class="time-block-sub">${userTZ}</div>
-      </div>
-    </div>
-    <div class="age-bar-wrap">
-      <div class="age-bar-label">
-        <span>Post age</span>
-        <span style="color:var(--text)">${timeAgo(date.getTime())}</span>
-      </div>
-      <div class="age-bar-track">
-        <div class="age-bar-fill" id="ageBarFill"></div>
-      </div>
-    </div>
-    <div class="timezone-note">UTC: ${date.toUTCString()}</div>
-  `;
-  card.classList.add('result-card', 'visible', 'success');
-
-  setTimeout(() => {
-    const fill = document.getElementById('ageBarFill');
-    if (fill) fill.style.width = pct + '%';
-  }, 50);
-}
-
-function showError(card, msg) {
-  card.innerHTML = `<div class="error-msg">${msg}</div>`;
-  card.classList.add('result-card', 'visible', 'error');
+function toggleFaq(el) {
+  el.closest('.faq-item').classList.toggle('open');
 }
 
 document.getElementById('urlInput').addEventListener('keydown', e => {
