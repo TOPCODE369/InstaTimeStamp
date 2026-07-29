@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5196914733161173" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Find the Exact Time an Instagram Post Was Made — InstaTimestamp</title>
+  <meta name="description" content="Instagram hides exact post times on mobile. Here's how to find the precise date and time any Instagram post or reel was published — for free, no login needed." />
+  <meta name="keywords" content="how to find instagram post time, instagram post timestamp, exact time instagram post, when was instagram post posted, instagram date finder" />
+  <meta name="author" content="InstaTimestamp" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="How to Find the Exact Time an Instagram Post Was Made" />
+  <meta property="og:description" content="Instagram hides exact post times on mobile. Here's how to find the precise date and time any Instagram post or reel was published." />
+  <meta property="og:url" content="https://instatimestamp.com/blog.html" />
+  <meta property="og:type" content="article" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-2: #f9fafb;
+  --border: #e5e7eb;
+  --text: #0f0f0f;
+  --text-2: #4b5563;
+  --text-3: #9ca3af;
+  --accent: #4f46e5;
+  --accent-light: #eef2ff;
+  --accent-text: #4f46e5;
+  --nav-bg: rgba(255,255,255,0.92);
+  --footer-bg: #0f0f0f;
+  --footer-text: #ffffff;
+  --footer-muted: #6b7280;
+  --footer-link: #9ca3af;
+  --theme-btn-bg: #f3f4f6;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --bg-2: #1a1a1a;
+  --border: #2a2a2a;
+  --text: #f5f5f5;
+  --text-2: #a0a0a0;
+  --text-3: #666666;
+  --accent: #6366f1;
+  --accent-light: rgba(99,102,241,0.12);
+  --accent-text: #818cf8;
+  --nav-bg: rgba(15,15,15,0.92);
+  --footer-bg: #0a0a0a;
+  --footer-text: #f5f5f5;
+  --footer-muted: #666666;
+  --footer-link: #666666;
+  --theme-btn-bg: #2a2a2a;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 16px; font-weight: 700; color: var(--text);
+  letter-spacing: -0.02em; text-decoration: none;
+}
+.nav-logo-icon {
+  width: 30px; height: 30px;
+  background: var(--accent); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 14px; font-weight: 800;
+}
+.nav-links { display: flex; align-items: center; gap: 24px; }
+.nav-links a { font-size: 14px; color: var(--text-2); font-weight: 500; transition: color 0.15s; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--text) !important; color: var(--bg) !important;
+  padding: 7px 16px; border-radius: 6px;
+  font-size: 13px !important; font-weight: 600 !important;
+}
+
+/* ARTICLE */
+.article-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+.article-meta {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px; flex-wrap: wrap;
+}
+.article-tag {
+  background: var(--accent-light);
+  color: var(--accent-text);
+  font-size: 11px; font-weight: 700;
+  padding: 4px 10px; border-radius: 4px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.article-date { font-size: 13px; color: var(--text-3); }
+.article-read { font-size: 13px; color: var(--text-3); }
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.article-intro {
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.75;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 40px 0 14px;
+}
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 28px 0 10px;
+}
+p { color: var(--text-2); margin-bottom: 18px; line-height: 1.8; }
+ul, ol { color: var(--text-2); padding-left: 22px; margin-bottom: 18px; }
+ul li, ol li { margin-bottom: 8px; line-height: 1.7; }
+strong { color: var(--text); font-weight: 600; }
+
+.callout {
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin: 28px 0;
+}
+.callout p { color: var(--accent-text); margin: 0; font-size: 14px; }
+
+.step-block {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.step-block-num {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent-text); margin-bottom: 6px;
+}
+.step-block h3 { margin: 0 0 8px; font-size: 15px; }
+.step-block p { margin: 0; font-size: 13px; }
+
+/* CTA BOX */
+.cta-box {
+  background: var(--accent);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  margin: 48px 0;
+}
+.cta-box h3 { color: white; font-size: 1.2rem; margin-bottom: 8px; }
+.cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 20px; font-size: 14px; }
+.cta-btn {
+  display: inline-block;
+  background: white; color: var(--accent);
+  font-size: 14px; font-weight: 700;
+  padding: 12px 28px; border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.cta-btn:hover { opacity: 0.9; }
+
+/* DIVIDER */
+hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+/* AUTHOR */
+.author-box {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 48px;
+}
+.author-avatar {
+  width: 48px; height: 48px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 18px; font-weight: 800;
+  flex-shrink: 0;
+}
+.author-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.author-bio { font-size: 13px; color: var(--text-3); }
+
+/* FLOATING THEME */
+.theme-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1.5px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--bg);
+}
+.theme-float:hover { transform: scale(1.12) rotate(-10deg); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
+
+/* FOOTER */
+.footer { background: var(--footer-bg); color: var(--footer-text); padding: 40px 24px; }
+.footer-inner {
+  max-width: 1040px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-logo { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; }
+.footer-logo em { color: #818cf8; font-style: normal; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 13px; color: var(--footer-link); transition: color 0.15s; }
+.footer-links a:hover { color: var(--footer-text); }
+.footer-copy { font-size: 12px; color: var(--footer-muted); width: 100%; margin-top: 8px; }
+
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">IT</div>
+    InstaTimestamp
+  </a>
+  <div class="nav-links">
+    <a href="/#how-it-works">How it works</a>
+    <a href="/#features">Features</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/#pricing" class="nav-cta">Get Pro</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="article-meta">
+    <span class="article-tag">Guide</span>
+    <span class="article-date">July 2026</span>
+    <span class="article-read">· 5 min read</span>
+  </div>
+
+  <h1>How to Find the Exact Time an Instagram Post Was Made</h1>
+
+  <p class="article-intro">Instagram shows you "3 days ago" or "2 weeks ago" — but never the exact time. Whether you're a creator, a journalist, a brand manager, or just curious, here is everything you need to know about finding the precise timestamp of any Instagram post or reel.</p>
+
+  <h2>Why Does Instagram Hide Exact Post Times?</h2>
+
+  <p>If you have ever tried to find out exactly when an Instagram post was published, you already know the frustration. On the mobile app, Instagram only shows relative time — "1 hour ago", "3 days ago", "2 weeks ago". The exact date and time is nowhere to be found.</p>
+
+  <p>Instagram does this intentionally. Relative timestamps keep the interface clean and simple, especially on mobile screens where space is limited. They also subtly encourage more browsing — if you see "3 days ago" instead of "Wednesday at 11:47 PM", you are less likely to feel like you missed something important.</p>
+
+  <p>On desktop, you can hover your mouse over the relative timestamp on a post and Instagram will show you the exact date and time. But this only works on a computer — and even then, it requires knowing where to hover. On mobile, this option simply does not exist.</p>
+
+  <h2>Who Needs to Know Exact Instagram Post Times?</h2>
+
+  <p>More people than you might think rely on exact Instagram timestamps for legitimate reasons:</p>
+
+  <ul>
+    <li><strong>Creators and influencers</strong> who want to analyse their own posting patterns and understand which times drive the most engagement.</li>
+    <li><strong>Social media managers</strong> who track competitors and need to know precisely when rival brands are posting.</li>
+    <li><strong>Journalists and fact-checkers</strong> who need to verify when a viral post or claim first appeared on Instagram.</li>
+    <li><strong>Brands and marketers</strong> researching the best time to post in their niche based on what top creators are doing.</li>
+    <li><strong>Curious individuals</strong> who simply want to know if a post was made before or after a specific event.</li>
+  </ul>
+
+  <div class="callout">
+    <p>💡 The most common use case is simple curiosity — someone shares a post and you want to know if it was posted before or after something happened. The mobile app gives you no way to find out.</p>
+  </div>
+
+  <h2>Three Ways to Find the Exact Time an Instagram Post Was Made</h2>
+
+  <h3>Method 1 — Use InstaTimestamp (Fastest, Works on Mobile)</h3>
+
+  <p>InstaTimestamp decodes the exact timestamp from any Instagram post URL directly in your browser. It works on any device — iPhone, Android, or desktop — and requires no login, no account, and no installation.</p>
+
+  <div class="step-block">
+    <div class="step-block-num">Step 1</div>
+    <h3>Find the post on Instagram</h3>
+    <p>Open Instagram and navigate to the post or reel you want to check.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-block-num">Step 2</div>
+    <h3>Copy the link</h3>
+    <p>On mobile: tap the three-dot menu (⋯) on the post → tap Copy link. On desktop: copy the URL from your browser's address bar.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-block-num">Step 3</div>
+    <h3>Paste it into InstaTimestamp</h3>
+    <p>Go to instatimestamp.com, paste the link into the box, and hit Check time. The exact date, time, day of week, and post age appear instantly.</p>
+  </div>
+
+  <p>The result shows you the time in your local timezone as well as UTC, so there is no confusion about which timezone the timestamp refers to.</p>
+
+  <div class="cta-box">
+    <h3>Try it right now — it's free</h3>
+    <p>Paste any Instagram post or reel URL and get the exact timestamp in seconds.</p>
+    <a href="/" class="cta-btn">Check a post →</a>
+  </div>
+
+  <h3>Method 2 — Hover on Desktop (Limited)</h3>
+
+  <p>If you are on a computer, open the Instagram post in your browser and hover your mouse over the relative timestamp below the post (where it says "3 days ago" or similar). A tooltip will appear showing the exact date and time.</p>
+
+  <p>This method has two major limitations: it only works on desktop, and it only shows the date — not always the precise time. It is also easy to miss if you do not know where to hover.</p>
+
+  <h3>Method 3 — Check the Page Source (Technical)</h3>
+
+  <p>On a desktop browser, you can right-click on an Instagram post page and select View Page Source. Inside the HTML code, search for the term "taken_at" or "timestamp". The number next to it is a Unix timestamp — you can convert it using any free online Unix timestamp converter.</p>
+
+  <p>This method is accurate but requires technical knowledge and only works on desktop. It is not practical for most users.</p>
+
+  <h2>How Does InstaTimestamp Actually Work?</h2>
+
+  <p>Every Instagram post has a unique ID built into its URL — the random-looking string of letters and numbers after /p/ or /reel/. This is called the post shortcode.</p>
+
+  <p>What most people do not know is that Instagram encodes a Unix timestamp directly inside this shortcode. A Unix timestamp is simply the number of seconds that have passed since January 1, 1970 — a standard way computers store time.</p>
+
+  <p>InstaTimestamp decodes this shortcode using a mathematical process called base-64 decoding, extracts the timestamp, and converts it into a readable date and time in your local timezone. The entire process happens inside your browser — nothing is sent to any server, and no data is stored.</p>
+
+  <p>This is why InstaTimestamp is completely private. The URL you paste never leaves your device.</p>
+
+  <h2>Does It Work for All Instagram Posts?</h2>
+
+  <p>InstaTimestamp works for all <strong>public posts and reels</strong>. There are a few limitations to be aware of:</p>
+
+  <ul>
+    <li><strong>Private accounts</strong> — the URL decoding still works, but the post must be publicly accessible for the link to be valid.</li>
+    <li><strong>Instagram Stories</strong> — Stories use a different URL format and expire after 24 hours. InstaTimestamp does not currently support Story links.</li>
+    <li><strong>Profile links</strong> — links to a user's profile page rather than a specific post will not return a timestamp.</li>
+  </ul>
+
+  <h2>Why Does the Exact Time Matter for Creators?</h2>
+
+  <p>For creators and social media managers, knowing exact post times is more valuable than it might seem. Instagram's algorithm heavily favours posts that generate engagement quickly after being published. If you post at the wrong time — when your audience is asleep or busy — your post gets less initial engagement, and the algorithm shows it to fewer people.</p>
+
+  <p>By tracking the exact times that top creators in your niche are posting, you can identify patterns. Are the most successful fashion creators posting on Tuesday evenings? Are finance accounts getting more traction with early morning posts? This kind of timing intelligence is what separates strategic creators from those who post randomly and hope for the best.</p>
+
+  <p>InstaTimestamp Pro — coming soon — will surface exactly this kind of niche-level timing intelligence, built from thousands of real post timestamps submitted by our users.</p>
+
+  <h2>Final Thoughts</h2>
+
+  <p>Instagram hiding exact post times is a deliberate design choice, but it does not mean you cannot find them. Whether you are verifying a viral claim, analysing a competitor, or just trying to settle a debate about when something was posted, InstaTimestamp gives you the answer in seconds — on any device, for free.</p>
+
+  <p>The tool is available at <strong>instatimestamp.com</strong> and requires no account, no login, and no installation. Paste a link, get the time. That is it.</p>
+
+  <hr>
+
+  <div class="author-box">
+    <div class="author-avatar">IT</div>
+    <div>
+      <div class="author-name">InstaTimestamp Team</div>
+      <div class="author-bio">Building tools to make Instagram more transparent, one timestamp at a time.</div>
+    </div>
+  </div>
+
+</div>
+
+<button class="theme-float" id="themeFloat" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo"><em>Insta</em>Timestamp</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/#features">Features</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/privacy.html">Privacy policy</a>
+    </div>
+    <div class="footer-copy">© 2026 InstaTimestamp. All rights reserved. Not affiliated with Instagram or Meta.</div>
+  </div>
+</footer>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  document.getElementById('themeFloat').textContent = next === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  const btn = document.getElementById('themeFloat');
+  if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+})();
+</script>
+</body>
+</html>
