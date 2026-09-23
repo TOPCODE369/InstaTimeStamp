@@ -4,261 +4,156 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5196914733161173" crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InstaTimestamp — See Exactly When Any Instagram Post Was Posted</title>
-  <meta name="description" content="Find the exact time and date any Instagram post or reel was published. Free Instagram timestamp checker — no login needed." />
-  <meta name="keywords" content="instagram post timestamp, find instagram post time, instagram date finder, when was instagram post posted, instagram time checker, exact instagram post time" />
+  <title>InstaTimestamp — Instagram Timestamp & First Post Finder</title>
+  <meta name="description" content="Find the exact time any Instagram post was made, or discover when someone first joined Instagram. Free tools — no login needed." />
+  <meta name="keywords" content="instagram post timestamp, find instagram post time, instagram date finder, instagram first post finder, when was instagram post posted, instagram time checker" />
   <meta name="author" content="InstaTimestamp" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="InstaTimestamp — See Exactly When Any Instagram Post Was Posted" />
-  <meta property="og:description" content="Paste any Instagram post or reel link and instantly see the exact date and time it was posted." />
+  <meta property="og:title" content="InstaTimestamp — Instagram Timestamp & First Post Finder" />
+  <meta property="og:description" content="Find the exact time any Instagram post was made, or discover when someone first joined Instagram. Free tools — no login needed." />
   <meta property="og:url" content="https://instatimestamp.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="InstaTimestamp — See Exactly When Any Instagram Post Was Posted" />
-  <meta name="twitter:description" content="Paste any Instagram post or reel link and instantly see the exact date and time it was posted." />
+  <meta name="twitter:title" content="InstaTimestamp — Instagram Timestamp & First Post Finder" />
+  <meta name="twitter:description" content="Find the exact time any Instagram post was made, or discover when someone first joined Instagram." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── LIGHT THEME ── */
 [data-theme="light"] {
-  --bg: #ffffff;
-  --bg-2: #f9fafb;
-  --bg-3: #f3f4f6;
-  --border: #e5e7eb;
-  --border-strong: #d1d5db;
-  --text: #0f0f0f;
-  --text-2: #4b5563;
-  --text-3: #9ca3af;
-  --accent: #4f46e5;
-  --accent-hover: #4338ca;
-  --accent-light: #eef2ff;
-  --accent-text: #4f46e5;
-  --success: #16a34a;
-  --success-light: #f0fdf4;
-  --success-border: #bbf7d0;
-  --error: #dc2626;
-  --error-light: #fef2f2;
-  --error-border: #fecaca;
-  --nav-bg: rgba(255,255,255,0.92);
-  --shadow: 0 4px 24px rgba(0,0,0,0.06);
-  --footer-bg: #0f0f0f;
-  --footer-text: #ffffff;
-  --footer-muted: #9ca3af;
-  --footer-link: #9ca3af;
-
+  --bg: #ffffff; --bg-2: #f9fafb; --bg-3: #f3f4f6;
+  --border: #e5e7eb; --border-strong: #d1d5db;
+  --text: #0f0f0f; --text-2: #4b5563; --text-3: #9ca3af;
+  --accent: #4f46e5; --accent-hover: #4338ca;
+  --accent-light: #eef2ff; --accent-text: #4f46e5;
+  --success: #16a34a; --success-light: #f0fdf4; --success-border: #bbf7d0;
+  --error: #dc2626; --error-light: #fef2f2; --error-border: #fecaca;
+  --nav-bg: rgba(255,255,255,0.92); --shadow: 0 4px 24px rgba(0,0,0,0.06);
+  --footer-bg: #0f0f0f; --footer-text: #ffffff;
+  --footer-muted: #9ca3af; --footer-link: #9ca3af;
 }
 
-/* ── DARK THEME ── */
 [data-theme="dark"] {
-  --bg: #0f0f0f;
-  --bg-2: #1a1a1a;
-  --bg-3: #222222;
-  --border: #2a2a2a;
-  --border-strong: #3a3a3a;
-  --text: #f5f5f5;
-  --text-2: #a0a0a0;
-  --text-3: #666666;
-  --accent: #6366f1;
-  --accent-hover: #818cf8;
-  --accent-light: rgba(99,102,241,0.12);
-  --accent-text: #818cf8;
-  --success: #4ade80;
-  --success-light: rgba(74,222,128,0.08);
-  --success-border: rgba(74,222,128,0.2);
-  --error: #f87171;
-  --error-light: rgba(248,113,113,0.08);
-  --error-border: rgba(248,113,113,0.2);
-  --nav-bg: rgba(15,15,15,0.92);
-  --shadow: 0 4px 24px rgba(0,0,0,0.4);
-  --footer-bg: #0a0a0a;
-  --footer-text: #f5f5f5;
-  --footer-muted: #666666;
-  --footer-link: #666666;
-
+  --bg: #0f0f0f; --bg-2: #1a1a1a; --bg-3: #222222;
+  --border: #2a2a2a; --border-strong: #3a3a3a;
+  --text: #f5f5f5; --text-2: #a0a0a0; --text-3: #666666;
+  --accent: #6366f1; --accent-hover: #818cf8;
+  --accent-light: rgba(99,102,241,0.12); --accent-text: #818cf8;
+  --success: #4ade80; --success-light: rgba(74,222,128,0.08); --success-border: rgba(74,222,128,0.2);
+  --error: #f87171; --error-light: rgba(248,113,113,0.08); --error-border: rgba(248,113,113,0.2);
+  --nav-bg: rgba(15,15,15,0.92); --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --footer-bg: #0a0a0a; --footer-text: #f5f5f5;
+  --footer-muted: #666666; --footer-link: #666666;
 }
 
 body {
   font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 15px;
-  line-height: 1.6;
+  background: var(--bg); color: var(--text);
+  font-size: 15px; line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background 0.2s, color 0.2s;
 }
-
 a { color: inherit; text-decoration: none; }
 
-/* ── NAVBAR ── */
+/* NAV */
 .nav {
   position: sticky; top: 0; z-index: 100;
-  background: var(--nav-bg);
-  backdrop-filter: blur(12px);
+  background: var(--nav-bg); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: 0 24px;
-  height: 60px;
+  padding: 0 24px; height: 60px;
   display: flex; align-items: center; justify-content: space-between;
   transition: background 0.2s, border-color 0.2s;
 }
-.nav-logo {
-  display: flex; align-items: center; gap: 9px;
-  font-size: 16px; font-weight: 700; color: var(--text);
-  letter-spacing: -0.02em;
-}
-.nav-logo-icon {
-  width: 30px; height: 30px;
-  background: var(--accent);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-size: 14px; font-weight: 800;
-}
-.nav-right {
-  display: flex; align-items: center; gap: 24px;
-}
-.nav-links {
-  display: flex; align-items: center; gap: 28px;
-}
-.nav-links a {
-  font-size: 14px; color: var(--text-2); font-weight: 500;
-  transition: color 0.15s;
-}
+.nav-logo { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+.nav-logo-icon { width: 30px; height: 30px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 800; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { font-size: 14px; color: var(--text-2); font-weight: 500; transition: color 0.15s; }
 .nav-links a:hover { color: var(--text); }
-.nav-cta {
-  background: var(--text) !important;
-  color: var(--bg) !important;
-  padding: 7px 16px;
-  border-radius: 6px;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  transition: opacity 0.15s !important;
-}
+.nav-cta { background: var(--text) !important; color: var(--bg) !important; padding: 7px 16px; border-radius: 6px; font-size: 13px !important; font-weight: 600 !important; transition: opacity 0.15s !important; }
 .nav-cta:hover { opacity: 0.8 !important; }
 
-/* ── FLOATING THEME BUTTON ── */
+/* FLOATING THEME */
 .theme-float {
-  position: fixed;
-  bottom: 28px; right: 28px;
-  z-index: 999;
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  width: 52px; height: 52px; border-radius: 50%; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.1);
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
+  background: var(--bg); border: 1.5px solid var(--border);
 }
-.theme-float:hover {
-  transform: scale(1.12) rotate(-10deg);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.22);
-}
+.theme-float:hover { transform: scale(1.12) rotate(-10deg); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
 .theme-float:active { transform: scale(0.95); }
 .theme-float-tooltip {
-  position: fixed;
-  bottom: 88px; right: 28px;
-  z-index: 998;
-  background: var(--text);
-  color: var(--bg);
-  font-size: 11px; font-weight: 600;
-  padding: 5px 10px; border-radius: 6px;
-  white-space: nowrap;
-  opacity: 0; pointer-events: none;
-  transform: translateY(4px);
-  transition: opacity 0.15s, transform 0.15s;
+  position: fixed; bottom: 88px; right: 28px; z-index: 998;
+  background: var(--text); color: var(--bg);
+  font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 6px;
+  white-space: nowrap; opacity: 0; pointer-events: none;
+  transform: translateY(4px); transition: opacity 0.15s, transform 0.15s;
 }
-.theme-float:hover + .theme-float-tooltip {
-  opacity: 1; transform: translateY(0);
-}
+.theme-float:hover + .theme-float-tooltip { opacity: 1; transform: translateY(0); }
 
-/* ── HERO ── */
-.hero {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 72px 24px 80px;
-  text-align: center;
-}
+/* HERO */
+.hero { max-width: 760px; margin: 0 auto; padding: 72px 24px 80px; text-align: center; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  background: var(--accent-light);
-  color: var(--accent-text);
-  font-size: 12px; font-weight: 600;
-  padding: 5px 12px; border-radius: 20px;
-  margin-bottom: 24px;
-  letter-spacing: 0.01em;
+  background: var(--accent-light); color: var(--accent-text);
+  font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 20px;
+  margin-bottom: 24px; letter-spacing: 0.01em;
 }
-.hero-badge-dot {
-  width: 5px; height: 5px;
-  background: var(--accent);
-  border-radius: 50%;
-  animation: blink 2s infinite;
-}
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
-  color: var(--text);
-  margin-bottom: 18px;
-}
-.hero h1 em {
-  font-style: normal;
-  color: var(--accent-text);
-}
-.hero-sub {
-  font-size: 16px;
-  color: var(--text-2);
-  max-width: 520px;
-  margin: 0 auto 40px;
-  line-height: 1.7;
+.hero-badge-dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; animation: blink 2s infinite; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; color: var(--text); margin-bottom: 18px; }
+.hero h1 em { font-style: normal; color: var(--accent-text); }
+.hero-sub { font-size: 16px; color: var(--text-2); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; }
+
+/* TOOL BOX */
+.tool-box {
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 0;
+  text-align: left; box-shadow: var(--shadow);
+  max-width: 620px; margin: 0 auto;
+  transition: background 0.2s, border-color 0.2s;
+  overflow: hidden;
 }
 
-/* ── TOOL BOX ── */
-.tool-box {
-  background: var(--bg);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 28px;
-  text-align: left;
-  box-shadow: var(--shadow);
-  max-width: 620px;
-  margin: 0 auto;
-  transition: background 0.2s, border-color 0.2s;
+/* TABS */
+.tool-tabs {
+  display: flex; border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
 }
-.tool-label {
-  font-size: 12px; font-weight: 600;
-  color: var(--text-2);
-  letter-spacing: 0.06em; text-transform: uppercase;
-  margin-bottom: 10px;
+.tool-tab {
+  flex: 1; padding: 14px 16px;
+  font-size: 13px; font-weight: 600;
+  color: var(--text-3); cursor: pointer;
+  border: none; background: none;
+  font-family: 'Inter', sans-serif;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: color 0.15s, background 0.15s;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
 }
+.tool-tab:hover { color: var(--text-2); }
+.tool-tab.active { color: var(--accent-text); border-bottom-color: var(--accent); background: var(--bg); }
+
+/* TOOL PANELS */
+.tool-panel { padding: 24px; display: none; }
+.tool-panel.active { display: block; }
+
+.tool-label { font-size: 12px; font-weight: 600; color: var(--text-2); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
 .tool-row { display: flex; gap: 10px; margin-bottom: 10px; }
 .tool-input {
-  flex: 1; height: 44px;
-  padding: 0 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 6px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  color: var(--text);
-  background: var(--bg-2);
-  outline: none;
+  flex: 1; height: 44px; padding: 0 14px;
+  border: 1.5px solid var(--border); border-radius: 6px;
+  font-family: 'Inter', sans-serif; font-size: 14px;
+  color: var(--text); background: var(--bg-2); outline: none;
   transition: border-color 0.15s, box-shadow 0.15s, background 0.2s;
 }
 .tool-input::placeholder { color: var(--text-3); }
-.tool-input:focus {
-  border-color: var(--accent);
-  background: var(--bg);
-  box-shadow: 0 0 0 3px var(--accent-light);
-}
+.tool-input:focus { border-color: var(--accent); background: var(--bg); box-shadow: 0 0 0 3px var(--accent-light); }
 .tool-btn {
   height: 44px; padding: 0 20px;
-  background: var(--accent);
-  color: #fff;
+  background: var(--accent); color: #fff;
   border: none; border-radius: 6px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px; font-weight: 600;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
   cursor: pointer; white-space: nowrap;
   transition: background 0.15s, transform 0.1s;
 }
@@ -267,228 +162,157 @@ a { color: inherit; text-decoration: none; }
 .tool-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 .tool-hint { font-size: 12px; color: var(--text-3); line-height: 1.5; }
 
-/* ── RESULT ── */
-.result { margin-top: 20px; border-radius: 10px; padding: 20px; display: none; transition: background 0.2s; }
+/* RESULT */
+.result { margin-top: 16px; border-radius: 10px; padding: 18px; display: none; transition: background 0.2s; }
 .result.visible { display: block; }
 .result.success { background: var(--success-light); border: 1px solid var(--success-border); }
 .result.error { background: var(--error-light); border: 1px solid var(--error-border); }
-.result-title {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--success); margin-bottom: 14px;
-}
+.result-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--success); margin-bottom: 14px; }
 .result.error .result-title { color: var(--error); }
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-.result-block {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px; padding: 12px 14px;
-  transition: background 0.2s;
-}
-.result-block-label {
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--text-3); margin-bottom: 4px;
-}
-.result-block-value {
-  font-size: 17px; font-weight: 700;
-  color: var(--text); letter-spacing: -0.02em; line-height: 1.2;
-}
+.result-block { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; transition: background 0.2s; }
+.result-block-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+.result-block-value { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1.2; }
 .result-block-sub { font-size: 11px; color: var(--text-3); margin-top: 2px; }
-.result-age {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 6px; padding: 12px 14px; margin-bottom: 10px;
-  transition: background 0.2s;
-}
-.result-age-top {
-  display: flex; justify-content: space-between;
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--text-3); margin-bottom: 8px;
-}
+.result-age { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; transition: background 0.2s; }
+.result-age-top { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
 .result-age-top span:last-child { color: var(--text); }
 .age-track { height: 5px; background: var(--bg-3); border-radius: 3px; overflow: hidden; }
-.age-fill {
-  height: 100%; background: var(--accent);
-  border-radius: 3px; width: 0%;
-  transition: width 1s cubic-bezier(0.22,1,0.36,1);
-}
+.age-fill { height: 100%; background: var(--accent); border-radius: 3px; width: 0%; transition: width 1s cubic-bezier(0.22,1,0.36,1); }
 .result-utc { font-size: 11px; color: var(--text-3); }
 .error-msg { font-size: 13px; color: var(--error); line-height: 1.6; }
 
-/* ── TRUST BAR ── */
+/* FIRST POST FINDER STEPS */
+.fpf-step {
+  display: none;
+}
+.fpf-step.active { display: block; }
+
+.fpf-profile-link {
+  display: block; margin: 14px 0;
+  padding: 14px 16px;
+  background: var(--accent-light);
+  border: 1.5px solid var(--accent);
+  border-radius: 8px;
+  font-size: 14px; font-weight: 600;
+  color: var(--accent-text);
+  text-align: center;
+  transition: opacity 0.15s;
+}
+.fpf-profile-link:hover { opacity: 0.85; }
+
+.fpf-instructions {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 18px; margin: 14px 0;
+}
+.fpf-instructions-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 12px;
+}
+.fpf-instructions ol { padding-left: 18px; }
+.fpf-instructions li { font-size: 13px; color: var(--text-2); margin-bottom: 8px; line-height: 1.6; }
+.fpf-instructions li:last-child { margin-bottom: 0; }
+.fpf-instructions strong { color: var(--text); }
+
+.fpf-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 16px 0; color: var(--text-3); font-size: 12px;
+}
+.fpf-divider::before, .fpf-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+.fpf-back {
+  background: none; border: none; cursor: pointer;
+  font-size: 13px; color: var(--text-3);
+  font-family: 'Inter', sans-serif;
+  display: flex; align-items: center; gap: 5px;
+  padding: 0; margin-bottom: 16px;
+  transition: color 0.15s;
+}
+.fpf-back:hover { color: var(--text); }
+
+.fpf-warning {
+  font-size: 11px; color: var(--text-3);
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: 6px; padding: 10px 12px; margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* TRUST BAR */
 .trust {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-2);
-  padding: 16px 24px;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  background: var(--bg-2); padding: 16px 24px;
   display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
   transition: background 0.2s, border-color 0.2s;
 }
-.trust-item {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 13px; color: var(--text-2); font-weight: 500;
-}
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); font-weight: 500; }
 
-/* ── SECTIONS ── */
+/* SECTIONS */
 .section { max-width: 1040px; margin: 0 auto; padding: 80px 24px; }
-.section-eyebrow {
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--accent-text); margin-bottom: 12px;
-}
-.section-title {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 700; letter-spacing: -0.03em;
-  line-height: 1.2; color: var(--text); margin-bottom: 14px;
-}
-.section-sub {
-  font-size: 16px; color: var(--text-2);
-  max-width: 540px; line-height: 1.7;
-}
+.section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 12px; }
+.section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; color: var(--text); margin-bottom: 14px; }
+.section-sub { font-size: 16px; color: var(--text-2); max-width: 540px; line-height: 1.7; }
 .divider { border: none; border-top: 1px solid var(--border); }
 
-/* ── HOW IT WORKS ── */
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px; margin-top: 48px;
-}
-.step-card {
-  padding: 28px 24px;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  transition: background 0.2s, border-color 0.2s;
-}
-.step-num {
-  width: 36px; height: 36px;
-  background: var(--accent); color: white;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700; margin-bottom: 16px;
-}
+/* STEPS GRID */
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 48px; }
+.step-card { padding: 28px 24px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 16px; transition: background 0.2s, border-color 0.2s; }
+.step-num { width: 36px; height: 36px; background: var(--accent); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin-bottom: 16px; }
 .step-card h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
 .step-card p { font-size: 13px; color: var(--text-2); line-height: 1.6; }
 
-/* ── FEATURES ── */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px; margin-top: 48px;
-}
-.feature-card {
-  padding: 28px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--bg);
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-}
-.feature-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 20px var(--accent-light);
-}
-.feature-icon {
-  width: 44px; height: 44px;
-  background: var(--accent-light);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; margin-bottom: 16px;
-}
-.feature-tag {
-  display: inline-block;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 3px 8px; border-radius: 4px; margin-bottom: 12px;
-}
+/* FEATURES */
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 48px; }
+.feature-card { padding: 28px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg); transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; }
+.feature-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px var(--accent-light); }
+.feature-icon { width: 44px; height: 44px; background: var(--accent-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+.feature-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; margin-bottom: 12px; }
 .tag-free { background: #dcfce7; color: #15803d; }
 .tag-pro { background: var(--accent-light); color: var(--accent-text); }
 [data-theme="dark"] .tag-free { background: rgba(74,222,128,0.12); color: #4ade80; }
 .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
 .feature-card p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
 
-/* ── PRICING ── */
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px; margin-top: 48px;
-}
-.pricing-card {
-  padding: 28px;
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  background: var(--bg);
-  position: relative;
-  transition: background 0.2s, border-color 0.2s;
-}
+/* PRICING */
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 48px; }
+.pricing-card { padding: 28px; border: 1.5px solid var(--border); border-radius: 16px; background: var(--bg); position: relative; transition: background 0.2s, border-color 0.2s; }
 .pricing-card.featured { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-light); }
-.pricing-popular {
-  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-  background: var(--accent); color: white;
-  font-size: 11px; font-weight: 700;
-  padding: 4px 14px; border-radius: 20px;
-  letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap;
-}
+.pricing-popular { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
 .pricing-plan { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); margin-bottom: 10px; }
 .pricing-price { font-size: 36px; font-weight: 700; letter-spacing: -0.04em; color: var(--text); line-height: 1; margin-bottom: 4px; }
 .pricing-price sup { font-size: 18px; vertical-align: super; }
 .pricing-period { font-size: 13px; color: var(--text-3); margin-bottom: 20px; }
 .pricing-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 20px; }
 .pricing-features { list-style: none; margin-bottom: 24px; }
-.pricing-features li {
-  font-size: 13px; color: var(--text-2);
-  padding: 5px 0;
-  display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
-}
+.pricing-features li { font-size: 13px; color: var(--text-2); padding: 5px 0; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
 .pricing-features li::before { content: '✓'; color: var(--success); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-.pricing-btn {
-  display: block; width: 100%; padding: 11px;
-  border-radius: 6px;
-  font-size: 14px; font-weight: 600; text-align: center;
-  cursor: pointer;
-  border: 1.5px solid var(--border);
-  background: var(--bg); color: var(--text);
-  font-family: 'Inter', sans-serif;
-  transition: all 0.15s;
-}
+.pricing-btn { display: block; width: 100%; padding: 11px; border-radius: 6px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; transition: all 0.15s; }
 .pricing-btn:hover { border-color: var(--text); }
 .pricing-btn.primary { background: var(--accent); border-color: var(--accent); color: white; }
 .pricing-btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 
-/* ── FAQ ── */
+/* FAQ */
 .faq-list { margin-top: 48px; max-width: 680px; }
 .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
-.faq-q {
-  font-size: 15px; font-weight: 600; color: var(--text);
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center; gap: 12px;
-}
-.faq-toggle {
-  width: 22px; height: 22px; flex-shrink: 0;
-  background: var(--bg-3); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; color: var(--text-2);
-  transition: transform 0.2s;
-}
+.faq-q { font-size: 15px; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.faq-toggle { width: 22px; height: 22px; flex-shrink: 0; background: var(--bg-3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-2); transition: transform 0.2s; }
 .faq-a { font-size: 14px; color: var(--text-2); line-height: 1.7; margin-top: 12px; display: none; }
 .faq-item.open .faq-a { display: block; }
 .faq-item.open .faq-toggle { transform: rotate(45deg); }
 
-/* ── FOOTER ── */
+/* FOOTER */
 .footer { background: var(--footer-bg); color: var(--footer-text); padding: 40px 24px; transition: background 0.2s; }
-.footer-inner {
-  max-width: 1040px; margin: 0 auto;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 16px;
-}
+.footer-inner { max-width: 1040px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
 .footer-logo { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; }
 .footer-logo em { color: #818cf8; font-style: normal; }
-.footer-links { display: flex; gap: 24px; }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
 .footer-links a { font-size: 13px; color: var(--footer-link); transition: color 0.15s; }
 .footer-links a:hover { color: var(--footer-text); }
 .footer-copy { font-size: 12px; color: var(--footer-muted); width: 100%; margin-top: 8px; }
 
-/* ── ANIMATIONS ── */
+/* ANIMATIONS */
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 .hero > * { animation: fadeUp 0.5s ease both; }
@@ -497,7 +321,7 @@ a { color: inherit; text-decoration: none; }
 .hero > *:nth-child(4) { animation-delay: 0.15s; }
 .hero > *:nth-child(5) { animation-delay: 0.2s; }
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media (max-width: 600px) {
   .nav-links { display: none; }
   .tool-row { flex-direction: column; }
@@ -505,6 +329,7 @@ a { color: inherit; text-decoration: none; }
   .trust { gap: 16px; justify-content: flex-start; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .pricing-grid { grid-template-columns: 1fr; }
+  .tool-tab { font-size: 12px; padding: 12px 10px; }
 }
 </style>
 </head>
@@ -531,18 +356,86 @@ a { color: inherit; text-decoration: none; }
     Free — no login needed
   </div>
   <h1>Find out <em>exactly when</em><br>any Instagram post was made.</h1>
-  <p class="hero-sub">Instagram hides exact post times on mobile. Paste any post or reel URL below and get the precise date and time — decoded instantly in your browser.</p>
+  <p class="hero-sub">Instagram hides exact post times on mobile. Paste any post URL below — or find when someone made their very first post.</p>
 
   <div class="tool-box">
-    <div class="tool-label">Instagram post or reel URL</div>
-    <div class="tool-row">
-      <input class="tool-input" id="urlInput" type="url"
-        placeholder="https://www.instagram.com/p/ABC123xyz/"
-        autocomplete="off" spellcheck="false" />
-      <button class="tool-btn" id="checkBtn" onclick="checkPost()">Check time →</button>
+
+    <!-- TABS -->
+    <div class="tool-tabs">
+      <button class="tool-tab active" onclick="switchTab('timestamp')">
+        ⏱ Check Post Time
+      </button>
+      <button class="tool-tab" onclick="switchTab('firstpost')">
+        🔍 First Post Finder
+      </button>
     </div>
-    <p class="tool-hint">Works with /p/ posts and /reel/ reels. Nothing is stored — all processing happens in your browser.</p>
-    <div class="result" id="resultCard"></div>
+
+    <!-- TAB 1: TIMESTAMP -->
+    <div class="tool-panel active" id="panel-timestamp">
+      <div class="tool-label">Instagram post or reel URL</div>
+      <div class="tool-row">
+        <input class="tool-input" id="urlInput" type="url"
+          placeholder="https://www.instagram.com/p/ABC123xyz/"
+          autocomplete="off" spellcheck="false" />
+        <button class="tool-btn" id="checkBtn" onclick="checkPost()">Check time →</button>
+      </div>
+      <p class="tool-hint">Works with posts and reels. Nothing is stored — all processing happens in your browser.</p>
+      <div class="result" id="resultCard"></div>
+    </div>
+
+    <!-- TAB 2: FIRST POST FINDER -->
+    <div class="tool-panel" id="panel-firstpost">
+
+      <!-- STEP 1: Enter username -->
+      <div class="fpf-step active" id="fpf-step1">
+        <div class="tool-label">Instagram username</div>
+        <div class="tool-row">
+          <input class="tool-input" id="fpfUsername" type="text"
+            placeholder="e.g. cristiano"
+            autocomplete="off" spellcheck="false" />
+          <button class="tool-btn" onclick="fpfGoToProfile()">Go →</button>
+        </div>
+        <p class="tool-hint">Enter any public Instagram username to find their first ever post.</p>
+        <div class="result" id="fpfUsernameError"></div>
+      </div>
+
+      <!-- STEP 2: Instructions + URL paste -->
+      <div class="fpf-step" id="fpf-step2">
+        <button class="fpf-back" onclick="fpfBack()">← Back</button>
+
+        <a class="fpf-profile-link" id="fpfProfileLink" href="#" target="_blank" rel="noopener">
+          Open @<span id="fpfUsernameDisplay"></span> on Instagram →
+        </a>
+
+        <div class="fpf-instructions">
+          <div class="fpf-instructions-title">How to find the first post</div>
+          <ol>
+            <li>Click the link above to open the profile on Instagram</li>
+            <li>Scroll <strong>all the way to the bottom</strong> of their posts grid</li>
+            <li>Tap the <strong>very last post</strong> in the grid — that's their first ever post</li>
+            <li>Tap the <strong>three-dot menu (⋯)</strong> → tap <strong>Copy link</strong></li>
+            <li>Paste the link below and hit Check</li>
+          </ol>
+        </div>
+
+        <div class="fpf-warning">
+          💡 Works best for accounts with fewer than 500 posts. For very large accounts, scrolling to the bottom may take a while.
+        </div>
+
+        <div class="fpf-divider">paste the first post link below</div>
+
+        <div class="tool-label">First post URL</div>
+        <div class="tool-row">
+          <input class="tool-input" id="fpfPostUrl" type="url"
+            placeholder="https://www.instagram.com/p/ABC123xyz/"
+            autocomplete="off" spellcheck="false" />
+          <button class="tool-btn" onclick="fpfCheckPost()">Check →</button>
+        </div>
+        <div class="result" id="fpfResult"></div>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
@@ -598,6 +491,12 @@ a { color: inherit; text-decoration: none; }
       <p>See the precise date, time, day of week, and post age for any Instagram post or reel. No guessing from "3 days ago."</p>
     </div>
     <div class="feature-card">
+      <div class="feature-icon">🔍</div>
+      <div class="feature-tag tag-free">Free</div>
+      <h3>First post finder</h3>
+      <p>Discover exactly when any Instagram account made their very first post — the date they started their journey on Instagram.</p>
+    </div>
+    <div class="feature-card">
       <div class="feature-icon">📊</div>
       <div class="feature-tag tag-pro">Pro</div>
       <h3>Trend tracking</h3>
@@ -608,12 +507,6 @@ a { color: inherit; text-decoration: none; }
       <div class="feature-tag tag-pro">Pro</div>
       <h3>Creator intelligence</h3>
       <p>Discover which days and times any creator posts most, and whether their timing correlates with higher engagement.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📈</div>
-      <div class="feature-tag tag-pro">Pro</div>
-      <h3>Niche analytics</h3>
-      <p>See when Fashion, Food, Finance, Fitness creators post across thousands of data points — so you can post smarter.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔒</div>
@@ -636,7 +529,7 @@ a { color: inherit; text-decoration: none; }
 <section class="section" id="pricing">
   <div class="section-eyebrow">Pricing</div>
   <h2 class="section-title">Simple, honest pricing.</h2>
-  <p class="section-sub">Free forever for the core tool. Upgrade for deeper analytics and creator intelligence.</p>
+  <p class="section-sub">Free forever for the core tools. Upgrade for deeper analytics and creator intelligence.</p>
   <div class="pricing-grid">
     <div class="pricing-card">
       <div class="pricing-plan">Free</div>
@@ -645,6 +538,7 @@ a { color: inherit; text-decoration: none; }
       <hr class="pricing-divider">
       <ul class="pricing-features">
         <li>Unlimited timestamp checks</li>
+        <li>First post finder</li>
         <li>Exact date, time and post age</li>
         <li>Works on mobile and desktop</li>
         <li>No login required</li>
@@ -698,8 +592,12 @@ a { color: inherit; text-decoration: none; }
       <div class="faq-a">No. InstaTimestamp works only with public posts and reels. Private account URLs will not return a valid result since they require authentication to access.</div>
     </div>
     <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How does the First Post Finder work?<div class="faq-toggle">+</div></div>
+      <div class="faq-a">Enter a username, open their profile on Instagram, scroll to the very bottom of their posts grid, copy the link of their earliest post, and paste it back. InstaTimestamp then decodes the exact date and time of that first post instantly.</div>
+    </div>
+    <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">Does it work for Instagram Stories?<div class="faq-toggle">+</div></div>
-      <div class="faq-a">Not currently. Stories use a different URL format and expire after 24 hours. InstaTimestamp supports posts (/p/) and reels (/reel/) only.</div>
+      <div class="faq-a">Not currently. Stories use a different URL format and expire after 24 hours. InstaTimestamp supports posts and reels only.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">Is the timestamp 100% accurate?<div class="faq-toggle">+</div></div>
@@ -710,12 +608,8 @@ a { color: inherit; text-decoration: none; }
       <div class="faq-a">No. All decoding happens inside your browser using JavaScript. Nothing you paste is ever sent to our servers. We have no access to the URLs you check.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Why does Instagram hide exact post times?<div class="faq-toggle">+</div></div>
-      <div class="faq-a">Instagram shows relative times like "3 days ago" to keep the interface clean — especially on mobile. The exact time is available on desktop by hovering over the timestamp, but this is completely hidden on the mobile app.</div>
-    </div>
-    <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">When is the Pro plan launching?<div class="faq-toggle">+</div></div>
-      <div class="faq-a">Pro is coming soon. The free tool is live now — Pro features including trend tracking and creator intelligence are in development.</div>
+      <div class="faq-a">Pro is coming soon. The free tools are live now — Pro features including trend tracking and creator intelligence are in development.</div>
     </div>
   </div>
 </section>
@@ -753,8 +647,6 @@ function toggleTheme() {
   if (tip) tip.textContent = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
   localStorage.setItem('theme', next);
 }
-
-// Always open in light mode unless user previously chose dark
 (function() {
   const saved = localStorage.getItem('theme');
   const theme = saved || 'light';
@@ -764,6 +656,99 @@ function toggleTheme() {
   if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
   if (tip) tip.textContent = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
 })();
+
+// ── TABS ──
+function switchTab(tab) {
+  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+  event.target.closest('.tool-tab').classList.add('active');
+}
+
+// ── FIRST POST FINDER ──
+function fpfGoToProfile() {
+  const username = document.getElementById('fpfUsername').value.trim().replace('@', '');
+  const errCard = document.getElementById('fpfUsernameError');
+  errCard.className = 'result';
+  errCard.innerHTML = '';
+
+  if (!username) {
+    errCard.innerHTML = '<div class="error-msg">Please enter an Instagram username first.</div>';
+    errCard.classList.add('result', 'visible', 'error');
+    return;
+  }
+  if (!/^[a-zA-Z0-9._]{1,30}$/.test(username)) {
+    errCard.innerHTML = '<div class="error-msg">That doesn\'t look like a valid Instagram username.</div>';
+    errCard.classList.add('result', 'visible', 'error');
+    return;
+  }
+
+  document.getElementById('fpfUsernameDisplay').textContent = username;
+  document.getElementById('fpfProfileLink').href = 'https://www.instagram.com/' + username + '/';
+  document.getElementById('fpf-step1').classList.remove('active');
+  document.getElementById('fpf-step2').classList.add('active');
+}
+
+function fpfBack() {
+  document.getElementById('fpf-step2').classList.remove('active');
+  document.getElementById('fpf-step1').classList.add('active');
+  document.getElementById('fpfResult').className = 'result';
+  document.getElementById('fpfResult').innerHTML = '';
+}
+
+function fpfCheckPost() {
+  const input = document.getElementById('fpfPostUrl').value;
+  const card = document.getElementById('fpfResult');
+  card.className = 'result';
+  card.innerHTML = '';
+
+  const shortcode = extractShortcode(input);
+  if (!shortcode) {
+    card.innerHTML = '<div class="error-msg">That doesn\'t look like a valid Instagram post URL. Make sure it contains /p/ or /reel/.</div>';
+    card.classList.add('result', 'visible', 'error');
+    return;
+  }
+
+  try {
+    const ts = shortcodeToTimestamp(shortcode);
+    const date = new Date(ts);
+    if (ts < 1286000000000 || ts > Date.now() + 60000) throw new Error('Out of range');
+
+    const username = document.getElementById('fpfUsernameDisplay').textContent;
+    const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const pct = Math.min(100, ((Date.now() - ts) / (5 * 365 * 24 * 60 * 60 * 1000)) * 100);
+
+    card.innerHTML = `
+      <div class="result-title">✓ First post decoded</div>
+      <div class="result-grid">
+        <div class="result-block">
+          <div class="result-block-label">First posted</div>
+          <div class="result-block-value">${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+          <div class="result-block-sub">${date.toLocaleDateString('en-US', { weekday: 'long' })}</div>
+        </div>
+        <div class="result-block">
+          <div class="result-block-label">Time (your local)</div>
+          <div class="result-block-value">${date.toLocaleTimeString('en-US', {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true})}</div>
+          <div class="result-block-sub">${userTZ}</div>
+        </div>
+      </div>
+      <div class="result-age">
+        <div class="result-age-top"><span>Account age</span><span>${timeAgo(ts)}</span></div>
+        <div class="age-track"><div class="age-fill" id="fpfAgeFill"></div></div>
+      </div>
+      <div class="result-utc">UTC: ${date.toUTCString()}</div>
+    `;
+    card.classList.add('result', 'visible', 'success');
+    setTimeout(() => { const f = document.getElementById('fpfAgeFill'); if (f) f.style.width = pct + '%'; }, 50);
+
+  } catch(e) {
+    card.innerHTML = '<div class="error-msg">Couldn\'t decode this URL. Make sure it\'s a valid public Instagram post link.</div>';
+    card.classList.add('result', 'visible', 'error');
+  }
+}
+
+document.getElementById('fpfUsername').addEventListener('keydown', e => { if (e.key === 'Enter') fpfGoToProfile(); });
+document.getElementById('fpfPostUrl').addEventListener('keydown', e => { if (e.key === 'Enter') fpfCheckPost(); });
 
 // ── TIMESTAMP DECODER ──
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
@@ -806,35 +791,25 @@ function checkPost() {
   const input = document.getElementById('urlInput').value;
   const card = document.getElementById('resultCard');
   const btn = document.getElementById('checkBtn');
-
-  card.className = 'result';
-  card.innerHTML = '';
+  card.className = 'result'; card.innerHTML = '';
 
   if (!input.trim()) {
     card.innerHTML = '<div class="error-msg">Please paste an Instagram post URL first.</div>';
-    card.classList.add('result', 'visible', 'error');
-    return;
+    card.classList.add('result', 'visible', 'error'); return;
   }
-
   const shortcode = extractShortcode(input);
   if (!shortcode) {
     card.innerHTML = '<div class="error-msg">That doesn\'t look like a valid Instagram URL. Make sure it contains /p/ or /reel/ in the link.</div>';
-    card.classList.add('result', 'visible', 'error');
-    return;
+    card.classList.add('result', 'visible', 'error'); return;
   }
-
-  btn.disabled = true;
-  btn.textContent = 'Decoding...';
-
+  btn.disabled = true; btn.textContent = 'Decoding...';
   setTimeout(() => {
     try {
       const ts = shortcodeToTimestamp(shortcode);
       const date = new Date(ts);
       if (ts < 1286000000000 || ts > Date.now() + 60000) throw new Error('Out of range');
-
       const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
       const pct = Math.min(100, ((Date.now() - ts) / (5 * 365 * 24 * 60 * 60 * 1000)) * 100);
-
       card.innerHTML = `
         <div class="result-title">✓ Timestamp decoded</div>
         <div class="result-grid">
@@ -857,23 +832,16 @@ function checkPost() {
       `;
       card.classList.add('result', 'visible', 'success');
       setTimeout(() => { const f = document.getElementById('ageFill'); if (f) f.style.width = pct + '%'; }, 50);
-
     } catch(e) {
       card.innerHTML = '<div class="error-msg">Couldn\'t decode this URL. Make sure it\'s a public Instagram post or reel link. Stories and profile links are not supported.</div>';
       card.classList.add('result', 'visible', 'error');
     }
-    btn.disabled = false;
-    btn.textContent = 'Check time →';
+    btn.disabled = false; btn.textContent = 'Check time →';
   }, 300);
 }
 
-function toggleFaq(el) {
-  el.closest('.faq-item').classList.toggle('open');
-}
-
-document.getElementById('urlInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') checkPost();
-});
+function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
+document.getElementById('urlInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkPost(); });
 </script>
 </body>
 </html>
