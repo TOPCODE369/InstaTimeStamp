@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Instagram Story Viewer — View Public Stories Anonymously | InstaTimestamp</title>
+  <meta name="description" content="View publicly accessible Instagram Stories without logging into Instagram. Enter a public Instagram username to check for active Stories.">
+  <meta name="keywords" content="instagram story viewer, anonymous instagram story viewer, instagram stories viewer, view instagram stories, public instagram story viewer">
+  <meta name="author" content="InstaTimestamp">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Instagram Story Viewer | InstaTimestamp">
+  <meta property="og:description" content="View publicly accessible Instagram Stories without logging into Instagram.">
+  <meta property="og:url" content="https://instatimestamp.com/instagram-story-viewer.html">
+  <meta property="og:type" content="website">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --bg-2: #f9fafb;
+      --bg-3: #f3f4f6;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text: #0f0f0f;
+      --text-2: #4b5563;
+      --text-3: #9ca3af;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --accent-light: #eef2ff;
+      --accent-text: #4f46e5;
+      --success: #16a34a;
+      --success-light: #f0fdf4;
+      --success-border: #bbf7d0;
+      --error: #dc2626;
+      --error-light: #fef2f2;
+      --error-border: #fecaca;
+      --nav-bg: rgba(255,255,255,0.92);
+      --shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --footer-bg: #0f0f0f;
+      --footer-text: #ffffff;
+      --footer-muted: #9ca3af;
+      --footer-link: #9ca3af;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f0f0f;
+      --bg-2: #1a1a1a;
+      --bg-3: #222222;
+      --border: #2a2a2a;
+      --border-strong: #3a3a3a;
+      --text: #f5f5f5;
+      --text-2: #a0a0a0;
+      --text-3: #666666;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --accent-light: rgba(99,102,241,0.12);
+      --accent-text: #818cf8;
+      --success: #4ade80;
+      --success-light: rgba(74,222,128,0.08);
+      --success-border: rgba(74,222,128,0.2);
+      --error: #f87171;
+      --error-light: rgba(248,113,113,0.08);
+      --error-border: rgba(248,113,113,0.2);
+      --nav-bg: rgba(15,15,15,0.92);
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --footer-bg: #0a0a0a;
+      --footer-text: #f5f5f5;
+      --footer-muted: #666666;
+      --footer-link: #666666;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-icon {
+      width: 30px;
+      height: 30px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-2);
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border: 0;
+      background: transparent;
+      color: var(--text-2);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 18px 0;
+    }
+
+    .nav-dropdown-toggle:hover,
+    .nav-dropdown.open .nav-dropdown-toggle {
+      color: var(--text);
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% - 4px);
+      right: 0;
+      width: 290px;
+      padding: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-5px);
+      transition: opacity .15s, transform .15s, visibility .15s;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 11px 12px;
+      border-radius: 8px;
+    }
+
+    .nav-dropdown-menu a:hover {
+      background: var(--bg-2);
+    }
+
+    .nav-dropdown-title {
+      display: block;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .nav-dropdown-desc {
+      display: block;
+      color: var(--text-3);
+      font-size: 11px;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .nav-cta {
+      background: var(--text) !important;
+      color: var(--bg) !important;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+    }
+
+    .theme-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      background: var(--bg);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .theme-float:hover {
+      transform: scale(1.12) rotate(-10deg);
+    }
+
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 24px 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-light);
+      color: var(--accent-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent-text);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-2);
+      max-width: 540px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .tool-box {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: left;
+      box-shadow: var(--shadow);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .tool-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-2);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .tool-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .tool-input {
+      flex: 1;
+      height: 44px;
+      padding: 0 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg-2);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .tool-input:focus {
+      border-color: var(--accent);
+      background: var(--bg);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .tool-input::placeholder {
+      color: var(--text-3);
+    }
+
+    .tool-btn {
+      height: 44px;
+      padding: 0 20px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .tool-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .tool-btn:active {
+      transform: scale(0.98);
+    }
+
+    .tool-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .tool-hint {
+      font-size: 12px;
+      color: var(--text-3);
+      line-height: 1.5;
+    }
+
+    .trust {
+      max-width: 760px;
+      margin: -30px auto 54px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .trust-item {
+      min-height: 68px;
+      padding: 12px 10px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-align: center;
+      color: var(--text-2);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .trust-icon {
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .result {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .result.visible {
+      display: block;
+    }
+
+    .message {
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .message.success {
+      background: var(--success-light);
+      border: 1px solid var(--success-border);
+    }
+
+    .message.error {
+      background: var(--error-light);
+      border: 1px solid var(--error-border);
+    }
+
+    .message-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 7px;
+    }
+
+    .message.success .message-title {
+      color: var(--success);
+    }
+
+    .message.error .message-title {
+      color: var(--error);
+    }
+
+    .message-text {
+      font-size: 13px;
+      color: var(--text-2);
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+    .profile-meta { min-width: 0; }
+    .story-card { position: relative; aspect-ratio: 9 / 16; border-radius: 10px; overflow: hidden; background: var(--bg-3); border: 1px solid var(--border); }
+    .story-card img, .story-card video { width: 100%; height: 100%; object-fit: cover; display: block; background: #000; }
+    .story-type, .story-time { position: absolute; padding: 4px 7px; border-radius: 999px; background: rgba(0,0,0,.65); color: #fff; font-size: 10px; font-weight: 700; pointer-events: none; }
+    .story-type { top: 8px; right: 8px; }
+    .story-time { left: 8px; bottom: 8px; }
+
+    .profile-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .profile-status {
+      font-size: 12px;
+      color: var(--success);
+      margin-top: 2px;
+    }
+
+    .stories-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .story-placeholder {
+      aspect-ratio: 9 / 16;
+      border-radius: 10px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+      color: var(--text-3);
+      font-size: 11px;
+    }
+
+    .section {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-text);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-2);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .step-card {
+      padding: 28px 24px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .step-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    .faq-list {
+      margin-top: 48px;
+      max-width: 680px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .faq-q {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faq-toggle {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      background: var(--bg-3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-2);
+      transition: transform 0.2s;
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    .footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .footer-logo em {
+      color: #818cf8;
+      font-style: normal;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--footer-link);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--footer-muted);
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 7px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .trust {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: -24px;
+        margin-bottom: 40px;
+      }
+
+      .tool-row {
+        flex-direction: column;
+      }
+
+      .stories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .theme-float {
+        right: 18px;
+        bottom: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">IT</div>
+    InstaTimestamp
+  </a>
+
+  <div class="nav-links">
+    <a href="/">Home</a>
+
+    <div class="nav-dropdown" id="toolsDropdown">
+      <button class="nav-dropdown-toggle" type="button" onclick="toggleTools(event)" aria-expanded="false">
+        Tools <span aria-hidden="true">▾</span>
+      </button>
+
+      <div class="nav-dropdown-menu">
+        <a href="/instagram-last-post-checker.html">
+          <span class="nav-dropdown-title">Instagram Last Post Checker</span>
+          <span class="nav-dropdown-desc">Check the date and time of an Instagram post.</span>
+        </a>
+        <a href="/instagram-story-viewer.html">
+          <span class="nav-dropdown-title">Instagram Story Viewer</span>
+          <span class="nav-dropdown-desc">View currently available public Stories.</span>
+        </a>
+      </div>
+    </div>
+
+    <a href="#how-it-works">How it works</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<section class="hero">
+
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Public Instagram Stories
+  </div>
+
+  <h1>View Instagram Stories<br><em>without logging in.</em></h1>
+
+  <p class="hero-sub">
+    Enter a public Instagram username to check for active Stories.
+    No Instagram account is required.
+  </p>
+
+  <div class="tool-box">
+
+    <div class="tool-label">Instagram username</div>
+
+    <div class="tool-row">
+      <input
+        class="tool-input"
+        id="usernameInput"
+        type="text"
+        placeholder="@username"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        maxlength="30"
+        aria-label="Instagram username"
+      >
+
+      <button class="tool-btn" id="viewBtn" onclick="findStories()">
+        View Stories →
+      </button>
+    </div>
+
+    <p class="tool-hint">
+      Public accounts only. No Instagram password or login is required.
+    </p>
+
+    <div class="result" id="result"></div>
+
+  </div>
+</section>
+
+<div class="trust" aria-label="Story Viewer features">
+  <div class="trust-item"><span class="trust-icon">🔒</span><span>No Instagram login</span></div>
+  <div class="trust-item"><span class="trust-icon">⚡</span><span>Simple username search</span></div>
+  <div class="trust-item"><span class="trust-icon">🛡️</span><span>Public accounts only</span></div>
+  <div class="trust-item"><span class="trust-icon">📱</span><span>Mobile friendly</span></div>
+</div>
+
+<hr class="divider">
+
+<section class="section" id="how-it-works">
+
+  <div class="section-eyebrow">How it works</div>
+
+  <h2 class="section-title">
+    Check for public Stories in three steps.
+  </h2>
+
+  <p class="section-sub">
+    Enter a username and InstaTimestamp will check for currently
+    available Stories from publicly accessible Instagram accounts
+    and display them here.
+  </p>
+
+  <div class="steps-grid">
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Enter a username</h3>
+      <p>
+        Type the Instagram username you want to check.
+        You don't need to provide an Instagram password.
+      </p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>Check the account</h3>
+      <p>
+        The service checks whether the requested public account
+        has Stories currently available.
+      </p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Open the Story</h3>
+      <p>
+        Available Stories can be displayed in the viewer
+        without requiring the visitor to log into Instagram.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<section class="section" id="faq">
+
+  <div class="section-eyebrow">FAQ</div>
+
+  <h2 class="section-title">
+    Instagram Story Viewer questions.
+  </h2>
+
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Can I view a private Instagram account?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        No. This tool is intended for publicly accessible Instagram
+        accounts only. It does not provide access to private accounts.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Do I need an Instagram account?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        The tool is designed so that visitors do not need to log into
+        Instagram to use the website.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Does entering a username work right now?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        Yes. Enter a public Instagram username and the tool will
+        check for currently available Stories. Provider credentials
+        remain on the secure backend and are not exposed in this page.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is InstaTimestamp affiliated with Instagram?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        No. InstaTimestamp is an independent website and is not
+        affiliated with, endorsed by, or sponsored by Instagram.
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+
+    <div class="footer-logo">
+      Insta<em>Timestamp</em>
+    </div>
+
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/instagram-last-post-checker.html">Last Post Checker</a>
+    </div>
+
+    <div class="footer-copy">
+      © 2026 InstaTimestamp. Independent service. Instagram is a trademark
+      of Meta Platforms, Inc.
+    </div>
+
+  </div>
+</footer>
+
+<button class="theme-float" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle dark mode">
+  ☀️
+</button>
+
+<script>
+  const API_URL = 'https://instatimestamp-story-api.mordantguy03.workers.dev/api/stories';
+  const usernameInput = document.getElementById('usernameInput');
+  const viewBtn = document.getElementById('viewBtn');
+  const result = document.getElementById('result');
+
+  usernameInput.addEventListener('keydown', e => { if (e.key === 'Enter') findStories(); });
+
+  function cleanUsername(value) {
+    return value.trim().replace(/^@+/, '').replace(/\s+/g, '');
+  }
+
+  function validUsername(username) {
+    return /^[A-Za-z0-9._]{1,30}$/.test(username);
+  }
+
+  async function findStories() {
+    const username = cleanUsername(usernameInput.value);
+    if (!username) return showError('Please enter an Instagram username.');
+    if (!validUsername(username)) return showError('Please enter a valid Instagram username.');
+
+    setLoading(true);
+    result.className = 'result visible';
+    result.innerHTML = `<div class="message"><div class="message-title">Checking @${escapeHtml(username)}</div><div class="message-text">Checking for publicly accessible Stories...</div></div>`;
+
+    try {
+      const response = await fetch(API_URL + '?username=' + encodeURIComponent(username), {
+        method: 'GET',
+        headers: { Accept: 'application/json' }
+      });
+
+      let data;
+      try { data = await response.json(); }
+      catch { throw new Error('The Story service returned an invalid response.'); }
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || 'Unable to retrieve Stories right now.');
+      }
+      renderStories(data);
+    } catch (error) {
+      showError(error.message || 'Unable to retrieve Stories right now.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function renderStories(data) {
+    const username = data.profile?.username || data.username || '';
+    const profile = data.profile || {};
+    const stories = Array.isArray(data.stories) ? data.stories : [];
+
+    if (!stories.length) {
+      result.className = 'result visible';
+      result.innerHTML = `<div class="message"><div class="message-title">No active Stories</div><div class="message-text">No currently available public Stories were found for @${escapeHtml(username)}.</div></div>`;
+      return;
+    }
+
+    const avatar = profile.profilePicUrl
+      ? `<img src="${escapeAttribute(profile.profilePicUrl)}" alt="" referrerpolicy="no-referrer">`
+      : escapeHtml((username.charAt(0) || '?').toUpperCase());
+
+    const secondary = profile.fullName
+      ? escapeHtml(profile.fullName)
+      : 'Public account';
+
+    const cards = stories.map((story, index) => {
+      const imageUrl = story.imageUrl || '';
+      const videoUrl = story.videoUrl || '';
+      const time = formatStoryTime(story.timestamp);
+
+      if (story.type === 'video' && videoUrl) {
+        return `<div class="story-card">
+          <video controls playsinline preload="metadata" poster="${escapeAttribute(imageUrl)}" src="${escapeAttribute(videoUrl)}" referrerpolicy="no-referrer" aria-label="Story ${index + 1} from @${escapeAttribute(username)}"></video>
+          <span class="story-type">VIDEO</span>
+          ${time ? `<span class="story-time">${escapeHtml(time)}</span>` : ''}
+        </div>`;
+      }
+
+      if (imageUrl) {
+        return `<a class="story-card" href="${escapeAttribute(imageUrl)}" target="_blank" rel="noopener noreferrer">
+          <img src="${escapeAttribute(imageUrl)}" alt="Story ${index + 1} from @${escapeAttribute(username)}" loading="lazy" referrerpolicy="no-referrer">
+          <span class="story-type">IMAGE</span>
+          ${time ? `<span class="story-time">${escapeHtml(time)}</span>` : ''}
+        </a>`;
+      }
+      return '';
+    }).join('');
+
+    result.className = 'result visible';
+    result.innerHTML = `
+      <div class="profile">
+        <div class="avatar">${avatar}</div>
+        <div class="profile-meta">
+          <div class="profile-name">@${escapeHtml(username)}</div>
+          <div class="profile-status">${secondary}</div>
+        </div>
+      </div>
+      <div class="stories-label">${stories.length} ${stories.length === 1 ? 'Story' : 'Stories'} available</div>
+      <div class="stories-grid">${cards}</div>
+    `;
+  }
+
+  function formatStoryTime(timestamp) {
+    if (!timestamp) return '';
+    const date = new Date(timestamp);
+    if (Number.isNaN(date.getTime())) return '';
+    const seconds = Math.max(0, Math.floor((Date.now() - date.getTime()) / 1000));
+    if (seconds < 60) return 'Just now';
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h ago`;
+    return date.toLocaleDateString();
+  }
+
+  function setLoading(loading) {
+    viewBtn.disabled = loading;
+    viewBtn.innerHTML = loading ? '<span class="spinner"></span>Checking...' : 'View Stories →';
+  }
+
+  function showError(message) {
+    result.className = 'result visible';
+    result.innerHTML = `<div class="message error"><div class="message-title">Unable to load Stories</div><div class="message-text">${escapeHtml(message)}</div></div>`;
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+  }
+  function escapeAttribute(value) { return escapeHtml(value); }
+  function toggleFaq(element) { element.parentElement.classList.toggle('open'); }
+
+  function toggleTools(event) {
+    event.stopPropagation();
+    const dropdown = document.getElementById('toolsDropdown');
+    const button = dropdown.querySelector('.nav-dropdown-toggle');
+    const isOpen = dropdown.classList.toggle('open');
+    button.setAttribute('aria-expanded', String(isOpen));
+  }
+
+  document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('toolsDropdown');
+    if (dropdown && !dropdown.contains(event.target)) {
+      dropdown.classList.remove('open');
+      const button = dropdown.querySelector('.nav-dropdown-toggle');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    document.getElementById('themeBtn').textContent = next === 'dark' ? '🌙' : '☀️';
+    localStorage.setItem('instatimestamp-theme', next);
+  }
+
+  (function loadTheme() {
+    const saved = localStorage.getItem('instatimestamp-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.getElementById('themeBtn').textContent = '🌙';
+    }
+  })();
+</script>
+
+</body>
+</html>
