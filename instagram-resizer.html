@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>Free Instagram Story & Reel Image Resizer | InstaTimestamp</title>
+  <meta name="description" content="Resize photos for Instagram Stories, Reel covers, square posts and portrait posts. Crop, fit or blur the background, preview and download. Free, private and no login required.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://instatimestamp.com/instagram-resizer.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Instagram Story & Reel Image Resizer | InstaTimestamp">
+  <meta property="og:description" content="Resize Instagram images in your browser. No upload, no account and no API fees.">
+  <meta property="og:url" content="https://instatimestamp.com/instagram-resizer.html">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    *{margin:0;padding:0}
+    [hidden]{display:none!important}
+    [data-theme="light"]{
+      --bg:#fff;--bg-2:#f9fafb;--bg-3:#f3f4f6;--text:#0f0f0f;--text-2:#4b5563;--text-3:#9ca3af;
+      --border:#e5e7eb;--border-strong:#d1d5db;--accent:#4f46e5;--accent-hover:#4338ca;
+      --accent-light:#eef2ff;--accent-text:#4f46e5;--nav-bg:rgba(255,255,255,.93);
+      --shadow:0 4px 24px rgba(0,0,0,.055);--footer-bg:#0f0f0f;--footer-link:#9ca3af;
+      --success:#15803d;--success-light:#f0fdf4;--danger:#b91c1c;--danger-bg:#fef2f2
+    }
+    [data-theme="dark"]{
+      --bg:#0f0f0f;--bg-2:#1a1a1a;--bg-3:#222;--text:#f5f5f5;--text-2:#a0a0a0;--text-3:#737373;
+      --border:#2a2a2a;--border-strong:#3d3d3d;--accent:#6366f1;--accent-hover:#818cf8;
+      --accent-light:rgba(99,102,241,.13);--accent-text:#a5b4fc;--nav-bg:rgba(15,15,15,.94);
+      --shadow:0 4px 24px rgba(0,0,0,.4);--footer-bg:#090909;--footer-link:#737373;
+      --success:#4ade80;--success-light:rgba(74,222,128,.07);--danger:#f87171;--danger-bg:rgba(248,113,113,.07)
+    }
+    html{scroll-behavior:smooth}
+    body{font:15px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+    a{color:inherit;text-decoration:none}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    .nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:60px;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:700;letter-spacing:-.02em}
+    .nav-logo-icon{width:30px;height:30px;border-radius:8px;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:800}
+    .nav-links{display:flex;align-items:center;gap:27px}
+    .nav-links>a,.nav-dropdown-toggle{font-size:14px;color:var(--text-2);font-weight:500}
+    .nav-links>a:hover,.nav-dropdown-toggle:hover{color:var(--text)}
+    .nav-cta{background:var(--text)!important;color:var(--bg)!important;padding:7px 16px;border-radius:6px;font-size:13px!important;font-weight:600!important}
+    .nav-dropdown{position:relative}
+    .nav-dropdown-toggle{display:flex;align-items:center;gap:5px;background:none;border:0;padding:18px 0}
+    .nav-dropdown-menu{position:absolute;top:calc(100% - 4px);right:0;width:290px;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(-5px);transition:.15s}
+    .nav-dropdown.open .nav-dropdown-menu,.nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:8px}
+    .nav-dropdown-menu a:hover{background:var(--bg-2)}
+    .nav-dropdown-title{display:block;color:var(--text);font-weight:700;font-size:13px}
+    .nav-dropdown-desc{display:block;color:var(--text-3);font-size:11px;line-height:1.5}
+    .mobile-menu-btn{display:none;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-size:21px}
+    .hero{max-width:860px;text-align:center;margin:0 auto;padding:64px 24px 38px}
+    .hero-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 13px;border-radius:30px;background:var(--accent-light);font-size:12px;font-weight:600;color:var(--accent-text);margin-bottom:23px}
+    .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    h1{font-size:clamp(2rem,5vw,3.15rem);letter-spacing:-.045em;line-height:1.13;font-weight:800;margin-bottom:16px}
+    h1 em{font-style:normal;color:var(--accent-text)}
+    .hero-sub{max-width:620px;margin:0 auto;font-size:16px;color:var(--text-2);line-height:1.75}
+    .app-shell{max-width:1120px;padding:0 24px;margin:0 auto 44px}
+    .app-grid{display:grid;grid-template-columns:minmax(360px,470px) minmax(0,1fr);gap:20px;align-items:start}
+    .panel{background:var(--bg);border:1.5px solid var(--border);box-shadow:var(--shadow);border-radius:16px;padding:24px}
+    .panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
+    .panel-heading{font-size:16px;font-weight:700;letter-spacing:-.02em}
+    .small-muted{font-size:12px;color:var(--text-3)}
+    .privacy-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--success);background:var(--success-light);border-radius:999px;padding:5px 10px}
+    .dropzone{position:relative;min-height:155px;border:1.5px dashed var(--border-strong);border-radius:12px;background:var(--bg-2);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;gap:6px;text-align:center;cursor:pointer;transition:background .15s,border-color .15s}
+    .dropzone:hover,.dropzone.dragover{border-color:var(--accent);background:var(--accent-light)}
+    .dropzone:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    .drop-icon{width:44px;height:44px;display:grid;place-items:center;background:var(--accent-light);border-radius:12px;font-size:21px;margin-bottom:3px;color:var(--accent-text)}
+    .dropzone b{font-size:14px;font-weight:700}
+    .dropzone span{font-size:12px;color:var(--text-2)}
+    .dropzone small{font-size:11px;color:var(--text-3)}
+    #fileInput{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+    .file-info{display:none;padding:10px 12px;border:1px solid var(--border);background:var(--bg-2);border-radius:8px;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+    .file-info.visible{display:flex}
+    .file-info-main{min-width:0}
+    .file-info-name{font-size:12px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .file-info-meta{font-size:11px;color:var(--text-3)}
+    .file-change{font-size:12px;color:var(--accent-text);background:none;border:0;font-weight:700;white-space:nowrap}
+    .group{margin-top:24px}
+    .group-label{font-size:12px;color:var(--text-2);font-weight:700;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .group-label span{font-size:11px;color:var(--text-3);font-weight:500}
+    .presets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .preset{background:var(--bg-2);color:var(--text);border:1.5px solid var(--border);border-radius:10px;text-align:left;min-height:75px;padding:11px 12px;display:flex;align-items:center;gap:11px;transition:border-color .15s,background .15s}
+    .preset:hover{border-color:var(--accent)}
+    .preset.active{border-color:var(--accent);background:var(--accent-light)}
+    .preset:focus-visible{outline:3px solid var(--accent)}
+    .preset-shape-wrap{width:34px;height:37px;flex:0 0 34px;display:grid;place-items:center}
+    .preset-shape{border:2px solid var(--accent);border-radius:3px;display:block;max-width:28px;max-height:33px}
+    .preset-title{display:block;font-size:12px;font-weight:700;line-height:1.35}
+    .preset-dim{font-size:11px;color:var(--text-3);display:block;margin-top:3px}
+    .mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .mode{border:1.5px solid var(--border);border-radius:9px;background:var(--bg-2);color:var(--text);padding:12px 8px;font-weight:700;font-size:12px;text-align:center;line-height:1.35}
+    .mode small{display:block;font-size:10px;font-weight:500;color:var(--text-3);margin-top:5px}
+    .mode.active{background:var(--accent-light);border-color:var(--accent)}
+    .controls-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px}
+    .zoom-control{flex:1;min-width:0}
+    .zoom-control label{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:6px}
+    input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer}
+    input[type=range]:disabled{opacity:.4;cursor:not-allowed}
+    .reset-btn{background:var(--bg-2);border:1px solid var(--border);color:var(--text-2);font-size:12px;font-weight:600;padding:8px 11px;border-radius:7px;white-space:nowrap}
+    .bg-color-line{display:flex;align-items:center;gap:10px;margin-top:14px}
+    .color-button{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);overflow:hidden;flex:0 0 auto}
+    input[type=color]{border:0;padding:0;width:54px;height:42px;margin:-4px -10px;cursor:pointer;background:none}
+    .bg-color-line label{font-size:12px;color:var(--text-2);font-weight:600}
+    .bg-color-line code{margin-left:auto;font-size:11px;color:var(--text-3);font-family:inherit}
+    .output-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .field-label{display:block;font-size:12px;color:var(--text-2);font-weight:700;margin-bottom:7px}
+    .select{width:100%;min-height:42px;border-radius:8px;border:1px solid var(--border);background:var(--bg-2);color:var(--text);padding:0 10px;outline:none}
+    .download-btn{margin-top:22px;width:100%;border:0;border-radius:9px;height:48px;background:var(--accent);color:#fff;font-size:14px;font-weight:700;display:flex;gap:9px;align-items:center;justify-content:center;transition:background .15s,transform .1s}
+    .download-btn:hover:not(:disabled){background:var(--accent-hover)}
+    .download-btn:active:not(:disabled){transform:scale(.99)}
+    .download-btn:disabled{opacity:.45;cursor:not-allowed}
+    .below-button{font-size:11px;color:var(--text-3);line-height:1.5;text-align:center;margin-top:12px}
+    .status{font-size:12px;margin-top:11px;min-height:18px;color:var(--text-2)}
+    .status.error{color:var(--danger)}
+    .status.success{color:var(--success)}
+    .preview-head-note{font-size:12px;color:var(--text-3)}
+    .preview-stage{min-height:505px;padding:21px 15px 18px;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;background:var(--bg-2);border-radius:12px;border:1px solid var(--border);overflow:hidden}
+    .preview-empty{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px;text-align:center;color:var(--text-3)}
+    .preview-art{width:110px;height:167px;border:3px solid var(--border-strong);border-radius:17px;padding:9px;background:var(--bg);position:relative;transform:rotate(-6deg);box-shadow:7px 8px 0 var(--bg-3)}
+    .preview-art::before{content:"";position:absolute;left:10px;right:10px;top:15px;height:67px;background:linear-gradient(135deg,#c7d2fe,#eef2ff);border-radius:5px}
+    .preview-art::after{content:"";position:absolute;left:13px;right:28px;bottom:26px;height:6px;background:var(--border-strong);border-radius:10px;box-shadow:0 14px 0 var(--border-strong)}
+    .preview-empty b{color:var(--text-2);font-size:14px}
+    .preview-empty p{max-width:255px;font-size:12px;line-height:1.6}
+    #outputCanvas{display:none;max-width:100%;max-height:436px;width:auto;height:auto;border-radius:4px;box-shadow:0 6px 30px rgba(0,0,0,.17);touch-action:none;user-select:none}
+    #outputCanvas.visible{display:block}
+    #outputCanvas.can-pan{cursor:grab}
+    #outputCanvas.is-panning{cursor:grabbing}
+    .preview-stage.has-image{min-height:505px}
+    .canvas-meta{display:none;gap:7px;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--text-2);background:var(--bg);border:1px solid var(--border);padding:6px 11px;border-radius:999px}
+    .canvas-meta.visible{display:flex}
+    .canvas-instruction{display:none;text-align:center;font-size:11px;color:var(--text-3)}
+    .canvas-instruction.visible{display:block}
+    .preview-details{margin-top:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:7px;font-size:12px;color:var(--text-2)}
+    .trust{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 24px 45px}
+    .trust-pill{display:flex;align-items:center;gap:7px;background:var(--bg-2);border:1px solid var(--border);border-radius:999px;padding:8px 13px;font-size:12px;font-weight:600;color:var(--text-2)}
+    .trust-check{color:var(--success);font-size:14px}
+    .divider{border:0;border-top:1px solid var(--border)}
+    .section{max-width:1030px;margin:0 auto;padding:70px 24px}
+    .section-eyebrow{font-size:12px;color:var(--accent-text);letter-spacing:.09em;text-transform:uppercase;font-weight:700;margin-bottom:11px}
+    .section-title{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:700;letter-spacing:-.035em;line-height:1.28;margin-bottom:13px}
+    .section-sub{max-width:650px;color:var(--text-2);font-size:14px;line-height:1.75}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:34px}
+    .step{border:1px solid var(--border);border-radius:13px;padding:22px;background:var(--bg)}
+    .step-num{display:grid;place-items:center;width:35px;height:35px;background:var(--accent-light);color:var(--accent-text);border-radius:10px;font-weight:800;margin-bottom:18px}
+    .step h3{font-size:15px;margin-bottom:8px}
+    .step p{font-size:13px;color:var(--text-2);line-height:1.7}
+    .guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+    .guide-card{border:1px solid var(--border);border-radius:13px;padding:22px;background:var(--bg-2)}
+    .guide-card h3{font-size:15px;margin-bottom:8px}
+    .guide-card p{font-size:13px;color:var(--text-2);line-height:1.75}
+    .faq-list{max-width:730px;margin-top:30px}
+    .faq-item{border-bottom:1px solid var(--border)}
+    .faq-item summary{list-style:none;cursor:pointer;font-size:14px;font-weight:700;padding:19px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:'+';font-weight:500;font-size:19px;color:var(--text-3)}
+    .faq-item[open] summary::after{content:'−'}
+    .faq-item p{font-size:13px;color:var(--text-2);line-height:1.75;padding:0 0 18px}
+    .footer{background:var(--footer-bg);color:#f5f5f5;padding:40px 24px}
+    .footer-inner{max-width:1040px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+    .footer-logo{font-weight:700;font-size:15px;letter-spacing:-.02em}
+    .footer-logo em{color:#818cf8;font-style:normal}
+    .footer-links{display:flex;gap:22px;flex-wrap:wrap}
+    .footer-links a{font-size:13px;color:var(--footer-link)}
+    .footer-links a:hover{color:#fff}
+    .footer-copy{color:#737373;font-size:12px;width:100%}
+    .theme-float{position:fixed;right:24px;bottom:24px;z-index:40;width:50px;height:50px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.16);font-size:22px;display:grid;place-items:center}
+    .theme-float:hover{transform:scale(1.05)}
+    @media(max-width:950px){.app-grid{grid-template-columns:minmax(0,1fr)}.preview-stage{min-height:390px}.preview-stage.has-image{min-height:390px}}
+    @media(max-width:760px){
+      .mobile-menu-btn{display:flex}
+      .nav-links{display:none;position:absolute;top:59px;left:0;right:0;padding:12px 20px 16px;flex-direction:column;align-items:stretch;gap:3px;background:var(--bg);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+      .nav-links.open{display:flex}.nav-links>a{padding:10px 8px}.nav-cta{text-align:center;margin-top:5px}
+      .nav-dropdown-toggle{padding:10px 8px;justify-content:space-between;width:100%}
+      .nav-dropdown-menu{position:static;width:100%;border:0;border-left:2px solid var(--border);border-radius:0;box-shadow:none;padding:2px 0 2px 9px;display:none;opacity:1;visibility:visible;transform:none;background:transparent}
+      .nav-dropdown.open .nav-dropdown-menu{display:block}
+      .nav-dropdown:hover .nav-dropdown-menu{transform:none}
+      .hero{padding:48px 22px 28px}.app-shell{padding:0 15px}.panel{padding:18px}
+      .trust{gap:8px;padding:10px 16px 33px}.trust-pill{font-size:11px;padding:7px 10px}
+      .steps,.guide-grid{grid-template-columns:1fr}
+      .section{padding:55px 22px}
+    }
+    @media(max-width:410px){.presets{grid-template-columns:1fr 1fr}.preset{padding:9px;gap:6px}.preset-shape-wrap{width:25px;flex-basis:25px}.preset-title{font-size:11px}.mode{font-size:11px;padding:11px 3px}.panel{padding:15px}.preview-stage{padding:12px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Instagram Story & Reel Image Resizer","url":"https://instatimestamp.com/instagram-resizer.html","applicationCategory":"MultimediaApplication","operatingSystem":"Any modern web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free browser-based Instagram image resizer for Story, Reel cover and post formats."}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="nav-logo" aria-label="InstaTimestamp home"><span class="nav-logo-icon">IT</span>InstaTimestamp</a>
+    <button class="mobile-menu-btn" id="menuButton" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <div class="nav-dropdown" id="toolsDropdown">
+        <button class="nav-dropdown-toggle" id="toolsButton" type="button" aria-expanded="false" aria-controls="toolsMenu">Tools <span aria-hidden="true">⌄</span></button>
+        <div class="nav-dropdown-menu" id="toolsMenu">
+          <a href="/instagram-last-post-checker.html"><span class="nav-dropdown-title">Instagram Last Post Checker</span><span class="nav-dropdown-desc">Decode post and Reel timestamps</span></a>
+          <a href="/instagram-story-viewer.html"><span class="nav-dropdown-title">Instagram Story Viewer</span><span class="nav-dropdown-desc">View currently available public Stories</span></a>
+          <a href="/instagram-resizer.html" aria-current="page"><span class="nav-dropdown-title">Instagram Image Resizer</span><span class="nav-dropdown-desc">Resize photos and Reel covers for free</span></a>
+        </div>
+      </div>
+      <a href="#how-it-works">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="/#pricing" class="nav-cta">Get Pro</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-badge"><span class="badge-dot"></span> 100% free · No login · Browser-based</div>
+      <h1>Instagram image resizer.<br><em>Perfect size, every time.</em></h1>
+      <p class="hero-sub">Resize photos for Instagram Stories, Reel covers and posts. Crop, add padding or blur the background — then download in seconds. Your images stay on your device.</p>
+    </section>
+
+    <section class="app-shell" aria-label="Free Instagram image resizer">
+      <div class="app-grid">
+        <div class="panel">
+          <div class="panel-head"><h2 class="panel-heading">Resize your image</h2><span class="privacy-pill">✓ Private by design</span></div>
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload image or drop one here">
+            <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" aria-label="Choose an image">
+            <div class="drop-icon" aria-hidden="true">↑</div>
+            <b>Drop an image here or click to upload</b>
+            <span>JPG, PNG or WebP</span>
+            <small>Up to 35 MB · Nothing is uploaded to our servers</small>
+          </div>
+          <div class="file-info" id="fileInfo">
+            <div class="file-info-main"><div class="file-info-name" id="fileName"></div><div class="file-info-meta" id="fileMeta"></div></div>
+            <button class="file-change" id="changeFile" type="button">Change</button>
+          </div>
+
+          <div class="group">
+            <div class="group-label">1. Instagram size <span id="sizeDescription">Story & Reel cover</span></div>
+            <div class="presets" id="presetButtons" role="group" aria-label="Target image dimensions">
+              <button type="button" class="preset active" data-preset="story" aria-pressed="true">
+                <span class="preset-shape-wrap"><span class="preset-shape" style="width:18px;height:32px"></span></span><span><span class="preset-title">Story / Reel cover</span><span class="preset-dim">1080 × 1920 · 9:16</span></span>
+              </button>
+              <button type="button" class="preset" data-preset="square" aria-pressed="false">
+                <span class="preset-shape-wrap"><span class="preset-shape" style="width:26px;height:26px"></span></span><span><span class="preset-title">Square post</span><span class="preset-dim">1080 × 1080 · 1:1</span></span>
+              </button>
+              <button type="button" class="preset" data-preset="portrait" aria-pressed="false">
+                <span class="preset-shape-wrap"><span class="preset-shape" style="width:22px;height:28px"></span></span><span><span class="preset-title">Portrait post</span><span class="preset-dim">1080 × 1350 · 4:5</span></span>
+              </button>
+              <button type="button" class="preset" data-preset="landscape" aria-pressed="false">
+                <span class="preset-shape-wrap"><span class="preset-shape" style="width:29px;height:16px"></span></span><span><span class="preset-title">Landscape post</span><span class="preset-dim">1080 × 566 · 1.91:1</span></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="group">
+            <div class="group-label">2. How should it fit? <span>Choose your look</span></div>
+            <div class="mode-grid" id="modeButtons" role="group" aria-label="Image fitting mode">
+              <button type="button" class="mode active" data-mode="crop" aria-pressed="true">✂ Crop<small>Fill the frame</small></button>
+              <button type="button" class="mode" data-mode="fit" aria-pressed="false">▣ Fit<small>Keep everything</small></button>
+              <button type="button" class="mode" data-mode="blur" aria-pressed="false">◫ Blur fill<small>Soft backdrop</small></button>
+            </div>
+            <div class="controls-row">
+              <div class="zoom-control">
+                <label for="zoomRange">Zoom image <span id="zoomValue">100%</span></label>
+                <input type="range" id="zoomRange" min="100" max="200" step="5" value="100" disabled>
+              </div>
+              <button class="reset-btn" id="resetPosition" type="button">Reset position</button>
+            </div>
+            <div class="bg-color-line" id="backgroundSettings" hidden>
+              <div class="color-button"><input type="color" id="backgroundColor" value="#ffffff" aria-label="Background color"></div>
+              <label for="backgroundColor">Padding color</label><code id="colorHex">#FFFFFF</code>
+            </div>
+          </div>
+
+          <div class="group">
+            <div class="group-label">3. Export settings <span>Ready for Instagram</span></div>
+            <div class="output-row">
+              <div><label class="field-label" for="outputFormat">File format</label><select class="select" id="outputFormat"><option value="image/jpeg">JPG · smaller file</option><option value="image/png">PNG · lossless</option><option value="image/webp">WebP · modern</option></select></div>
+              <div><label class="field-label" for="outputQuality">Quality</label><select class="select" id="outputQuality"><option value="0.92">High · 92%</option><option value="0.82">Balanced · 82%</option><option value="1">Maximum · 100%</option></select></div>
+            </div>
+          </div>
+          <button class="download-btn" type="button" id="downloadButton" disabled><span aria-hidden="true">↓</span> Download resized image</button>
+          <div class="status" id="statusMessage" role="status" aria-live="polite"></div>
+          <p class="below-button">Your image is processed locally in your browser. No account, no watermark, no paid API.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h2 class="panel-heading">Live preview</h2><span class="preview-head-note" id="previewHeader">1080 × 1920 px</span></div>
+          <div class="preview-stage" id="previewStage">
+            <div class="preview-empty" id="previewEmpty"><div class="preview-art" aria-hidden="true"></div><b>Your resized image will appear here</b><p>Upload an image to preview the exact size, adjust the crop and download.</p></div>
+            <canvas id="outputCanvas" aria-label="Preview of your resized image"></canvas>
+            <div class="canvas-meta" id="canvasMeta">1080 × 1920 px</div>
+            <p class="canvas-instruction" id="canvasInstruction">Drag the image to adjust what stays in frame</p>
+          </div>
+          <div class="preview-details"><span id="detailPreset">Instagram Story / Reel cover · 9:16</span><span id="detailMode">Crop to fill</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust" aria-label="Benefits">
+      <div class="trust-pill"><span class="trust-check">✓</span> Completely free</div>
+      <div class="trust-pill"><span class="trust-check">✓</span> No upload to server</div>
+      <div class="trust-pill"><span class="trust-check">✓</span> No login required</div>
+      <div class="trust-pill"><span class="trust-check">✓</span> No watermark</div>
+    </div>
+
+    <hr class="divider">
+    <section class="section" id="how-it-works">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">Instagram-ready images in three steps.</h2>
+      <p class="section-sub">Whether you're designing a Story or choosing a Reel cover, you can prepare the image without installing an app or sending the photo to a third-party server.</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><h3>Upload a photo</h3><p>Select a JPG, PNG or WebP photo from your phone or computer. The file is opened directly in your browser.</p></div>
+        <div class="step"><div class="step-num">2</div><h3>Choose size and fit</h3><p>Pick Story, square, portrait or landscape. Crop and reposition the photo, or use padding or a blurred background.</p></div>
+        <div class="step"><div class="step-num">3</div><h3>Download your image</h3><p>Save the resized image as JPG, PNG or WebP and use it for your next Instagram upload.</p></div>
+      </div>
+    </section>
+    <hr class="divider">
+    <section class="section">
+      <div class="section-eyebrow">Instagram image dimensions</div>
+      <h2 class="section-title">Which Instagram image size should I choose?</h2>
+      <div class="guide-grid">
+        <div class="guide-card"><h3>Stories and Reel covers — 1080 × 1920</h3><p>Use a tall 9:16 image for an Instagram Story or full-screen Reel cover. Instagram interface elements may cover parts of the top and bottom, so keep essential text away from the edges.</p></div>
+        <div class="guide-card"><h3>Square and portrait posts — 1080 × 1080 or 1080 × 1350</h3><p>Choose 1:1 for square feed posts, or 4:5 for traditional portrait feed graphics. Instagram may show different crops in profile grids and some app views.</p></div>
+      </div>
+    </section>
+    <hr class="divider">
+    <section class="section" id="faq">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">Common questions.</h2>
+      <div class="faq-list">
+        <details class="faq-item"><summary>Is the Instagram image resizer really free?</summary><p>Yes. Image resizing uses your browser's Canvas API, so no paid image-processing service or Instagram API is involved.</p></details>
+        <details class="faq-item"><summary>Are the photos uploaded to InstaTimestamp?</summary><p>No. This tool reads and processes the selected image locally in your browser. The image is not uploaded to our server.</p></details>
+        <details class="faq-item"><summary>Does this resize actual Instagram Reel videos?</summary><p>No. This version resizes still images, including Reel cover images. Video files require a separate video processing tool.</p></details>
+        <details class="faq-item"><summary>What's the difference between Crop, Fit and Blur fill?</summary><p>Crop fills the frame, cutting off some of the picture if necessary. Fit shows the entire image with a solid-color background. Blur fill shows the entire image over a softly blurred copy of it.</p></details>
+        <details class="faq-item"><summary>Will this improve a low-resolution photo?</summary><p>It changes dimensions and layout, but it cannot restore detail that wasn't present in the original photo. For the best result, use a high-quality source image.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="footer-inner"><div class="footer-logo"><em>Insta</em>Timestamp</div><div class="footer-links"><a href="/">Home</a><a href="/instagram-story-viewer.html">Story Viewer</a><a href="/instagram-last-post-checker.html">Last Post Checker</a><a href="/blog.html">Blog</a><a href="/privacy.html">Privacy policy</a></div><div class="footer-copy">© 2026 InstaTimestamp. All rights reserved. Not affiliated with Instagram or Meta.</div></div></footer>
+  <button class="theme-float" id="themeButton" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+
+<script>
+(() => {
+  'use strict';
+
+  const PRESETS = Object.freeze({
+    story: { width: 1080, height: 1920, label: 'Instagram Story / Reel cover · 9:16', filename: 'story-reel' },
+    square: { width: 1080, height: 1080, label: 'Instagram square post · 1:1', filename: 'square-post' },
+    portrait: { width: 1080, height: 1350, label: 'Instagram portrait post · 4:5', filename: 'portrait-post' },
+    landscape: { width: 1080, height: 566, label: 'Instagram landscape post · 1.91:1', filename: 'landscape-post' }
+  });
+
+  const $ = (id) => document.getElementById(id);
+  const canvas = $('outputCanvas');
+  const context = canvas.getContext('2d', { alpha: false });
+  const dropzone = $('dropzone');
+  const input = $('fileInput');
+  const zoomRange = $('zoomRange');
+  const state = { image: null, file: null, preset: 'story', mode: 'crop', zoom: 1, panX: 0, panY: 0 };
+  let imageObjectUrl = null;
+  let loadNumber = 0;
+  let drawing = false;
+  let drag = null;
+
+  function setStatus(message, type = '') {
+    $('statusMessage').textContent = message;
+    $('statusMessage').className = `status${type ? ` ${type}` : ''}`;
+  }
+
+  function setPressed(groupId, attr, selected) {
+    document.querySelectorAll(`#${groupId} [${attr}]`).forEach(button => {
+      const active = button.getAttribute(attr) === selected;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  function updateUi() {
+    const p = PRESETS[state.preset];
+    $('previewHeader').textContent = `${p.width} × ${p.height} px`;
+    $('canvasMeta').textContent = `${p.width} × ${p.height} px`;
+    $('detailPreset').textContent = p.label;
+    $('sizeDescription').textContent = state.preset === 'story' ? 'Story & Reel cover' : 'Instagram feed';
+    const modeNames = { crop: 'Crop to fill', fit: 'Fit with padding', blur: 'Blurred background' };
+    $('detailMode').textContent = modeNames[state.mode];
+    $('backgroundSettings').hidden = state.mode !== 'fit';
+    $('zoomRange').disabled = state.mode !== 'crop' || !state.image;
+    $('canvasInstruction').classList.toggle('visible', state.mode === 'crop' && Boolean(state.image));
+    $('outputCanvas').classList.toggle('can-pan', state.mode === 'crop' && Boolean(state.image));
+    $('zoomValue').textContent = `${Math.round(state.zoom * 100)}%`;
+    $('outputQuality').disabled = $('outputFormat').value === 'image/png';
+    setPressed('presetButtons', 'data-preset', state.preset);
+    setPressed('modeButtons', 'data-mode', state.mode);
+  }
+
+  function resetPanAndZoom() {
+    state.zoom = 1;
+    state.panX = 0;
+    state.panY = 0;
+    zoomRange.value = '100';
+    updateUi();
+  }
+
+  function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
+
+  function imageGeometry() {
+    const img = state.image;
+    const { width, height } = PRESETS[state.preset];
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    const scale = (state.mode === 'crop' ? Math.max(width / iw, height / ih) * state.zoom : Math.min(width / iw, height / ih));
+    const drawW = iw * scale, drawH = ih * scale;
+    const overflowX = Math.max(0, drawW - width), overflowY = Math.max(0, drawH - height);
+    const dx = (width - drawW) / 2 + state.panX * overflowX / 2;
+    const dy = (height - drawH) / 2 + state.panY * overflowY / 2;
+    return { width, height, drawW, drawH, dx, dy, overflowX, overflowY };
+  }
+
+  function render() {
+    if (!state.image || !context) return;
+    const { width, height, drawW, drawH, dx, dy } = imageGeometry();
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = 'high';
+    context.clearRect(0, 0, width, height);
+    if (state.mode === 'fit') {
+      context.fillStyle = $('backgroundColor').value;
+      context.fillRect(0, 0, width, height);
+    } else if (state.mode === 'blur') {
+      // Render a slightly enlarged, blurred copy behind the fitted foreground.
+      const img = state.image;
+      const scale = Math.max(width / img.naturalWidth, height / img.naturalHeight) * 1.16;
+      const backW = img.naturalWidth * scale, backH = img.naturalHeight * scale;
+      context.fillStyle = '#2b2b2b';
+      context.fillRect(0, 0, width, height);
+      context.save();
+      context.filter = 'blur(44px)';
+      context.drawImage(img, (width - backW) / 2, (height - backH) / 2, backW, backH);
+      context.restore();
+      context.fillStyle = 'rgba(0,0,0,0.12)';
+      context.fillRect(0, 0, width, height);
+    }
+    context.drawImage(state.image, dx, dy, drawW, drawH);
+  }
+
+  async function loadFile(file) {
+    if (!file) return;
+    const validType = ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
+    const validExt = /\.(jpe?g|png|webp)$/i.test(file.name);
+    if (!validType && !validExt) {
+      setStatus('Please choose a JPG, PNG or WebP image. This tool does not resize videos.', 'error');
+      return;
+    }
+    if (file.size > 35 * 1024 * 1024) {
+      setStatus('This image is larger than 35 MB. Please choose a smaller file.', 'error');
+      return;
+    }
+    const myLoad = ++loadNumber;
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    setStatus('Opening image…');
+    try {
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = () => reject(new Error('Could not read this image. Try exporting it as JPG or PNG.'));
+        img.src = url;
+      });
+      if (myLoad !== loadNumber) return;
+      if (!img.naturalWidth || !img.naturalHeight || img.naturalWidth * img.naturalHeight > 60_000_000) {
+        throw new Error('Image dimensions are too large for safe browser processing. Please use a smaller image.');
+      }
+      state.image = img;
+      state.file = file;
+      resetPanAndZoom();
+      $('fileName').textContent = file.name;
+      $('fileMeta').textContent = `${img.naturalWidth} × ${img.naturalHeight} px · ${formatBytes(file.size)}`;
+      $('fileInfo').classList.add('visible');
+      $('previewEmpty').hidden = true;
+      canvas.classList.add('visible');
+      $('previewStage').classList.add('has-image');
+      $('canvasMeta').classList.add('visible');
+      $('downloadButton').disabled = false;
+      render();
+      setStatus('Ready to download. Choose a preset or drag to reposition.', 'success');
+    } catch (error) {
+      if (myLoad === loadNumber) setStatus(error.message || 'Could not open this image.', 'error');
+    } finally {
+      URL.revokeObjectURL(url);
+      if (myLoad === loadNumber) input.value = '';
+    }
+  }
+
+  function formatBytes(bytes) {
+    return bytes < 1024 * 1024 ? `${(bytes / 1024).toFixed(1)} KB` : `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+
+  dropzone.addEventListener('click', () => input.click());
+  dropzone.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); input.click(); }
+  });
+  input.addEventListener('change', event => loadFile(event.target.files?.[0]));
+  $('changeFile').addEventListener('click', () => input.click());
+  ['dragenter', 'dragover'].forEach(type => dropzone.addEventListener(type, event => {
+    event.preventDefault(); dropzone.classList.add('dragover');
+  }));
+  ['dragleave', 'drop'].forEach(type => dropzone.addEventListener(type, event => {
+    event.preventDefault(); dropzone.classList.remove('dragover');
+  }));
+  dropzone.addEventListener('drop', event => loadFile(event.dataTransfer?.files?.[0]));
+
+  $('presetButtons').addEventListener('click', event => {
+    const button = event.target.closest('[data-preset]');
+    if (!button) return;
+    state.preset = button.dataset.preset;
+    resetPanAndZoom();
+    render();
+  });
+  $('modeButtons').addEventListener('click', event => {
+    const button = event.target.closest('[data-mode]');
+    if (!button) return;
+    state.mode = button.dataset.mode;
+    resetPanAndZoom();
+    render();
+  });
+  zoomRange.addEventListener('input', () => {
+    state.zoom = Number(zoomRange.value) / 100;
+    state.panX = clamp(state.panX, -1, 1);
+    state.panY = clamp(state.panY, -1, 1);
+    updateUi();
+    render();
+  });
+  $('resetPosition').addEventListener('click', () => { resetPanAndZoom(); render(); });
+  $('backgroundColor').addEventListener('input', event => {
+    $('colorHex').textContent = event.target.value.toUpperCase();
+    render();
+  });
+  $('outputFormat').addEventListener('change', updateUi);
+
+  canvas.addEventListener('pointerdown', event => {
+    if (!state.image || state.mode !== 'crop') return;
+    const geom = imageGeometry();
+    drag = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, panX: state.panX, panY: state.panY, geom };
+    canvas.setPointerCapture(event.pointerId);
+    canvas.classList.add('is-panning');
+    event.preventDefault();
+  });
+  canvas.addEventListener('pointermove', event => {
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const rect = canvas.getBoundingClientRect();
+    if (drag.geom.overflowX > 0) {
+      const change = (event.clientX - drag.startX) / rect.width * drag.geom.width * 2 / drag.geom.overflowX;
+      state.panX = clamp(drag.panX + change, -1, 1);
+    }
+    if (drag.geom.overflowY > 0) {
+      const change = (event.clientY - drag.startY) / rect.height * drag.geom.height * 2 / drag.geom.overflowY;
+      state.panY = clamp(drag.panY + change, -1, 1);
+    }
+    render();
+  });
+  function stopDragging(event) {
+    if (drag && (!event || event.pointerId === drag.pointerId)) {
+      drag = null;
+      canvas.classList.remove('is-panning');
+    }
+  }
+  canvas.addEventListener('pointerup', stopDragging);
+  canvas.addEventListener('pointercancel', stopDragging);
+  canvas.addEventListener('lostpointercapture', stopDragging);
+
+  $('downloadButton').addEventListener('click', async () => {
+    if (!state.image || drawing) return;
+    drawing = true;
+    const button = $('downloadButton');
+    button.disabled = true;
+    button.textContent = 'Preparing image…';
+    setStatus('Preparing your download…');
+    try {
+      render();
+      const type = $('outputFormat').value;
+      const quality = Number($('outputQuality').value);
+      const blob = await new Promise((resolve, reject) => {
+        canvas.toBlob(result => result ? resolve(result) : reject(new Error('Your browser could not export this image. Try JPG format.')), type, quality);
+      });
+      const fileTypes = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
+      const resultType = fileTypes[blob.type];
+      if (!resultType) throw new Error('The selected format is not supported here. Try JPG or PNG.');
+      const base = (state.file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]+/g, '-').slice(0, 45) || 'image');
+      const name = `${base}-instatimestamp-${PRESETS[state.preset].filename}.${resultType}`;
+      const downloadUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = name;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(downloadUrl), 15000);
+      setStatus(`Downloaded ${name} · ${formatBytes(blob.size)}`, 'success');
+    } catch (error) {
+      setStatus(error.message || 'Download failed. Please try again.', 'error');
+    } finally {
+      drawing = false;
+      button.disabled = false;
+      button.innerHTML = '<span aria-hidden="true">↓</span> Download resized image';
+    }
+  });
+
+  const savedTheme = (() => { try { return localStorage.getItem('instatimestamp-theme'); } catch { return null; } })();
+  if (savedTheme === 'dark' || savedTheme === 'light') document.documentElement.setAttribute('data-theme', savedTheme);
+  function updateThemeButton() {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    $('themeButton').textContent = dark ? '☀️' : '🌙';
+    $('themeButton').setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  $('themeButton').addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('instatimestamp-theme', next); } catch {}
+    updateThemeButton();
+  });
+  updateThemeButton();
+
+  const menuButton = $('menuButton'), navLinks = $('navLinks');
+  menuButton.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.textContent = open ? '✕' : '☰';
+  });
+  const toolsDropdown = $('toolsDropdown'), toolsButton = $('toolsButton');
+  toolsButton.addEventListener('click', event => {
+    event.stopPropagation();
+    const open = toolsDropdown.classList.toggle('open');
+    toolsButton.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', event => {
+    if (!toolsDropdown.contains(event.target)) {
+      toolsDropdown.classList.remove('open');
+      toolsButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      toolsDropdown.classList.remove('open');
+      toolsButton.setAttribute('aria-expanded', 'false');
+      navLinks.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.textContent = '☰';
+    }
+  });
+  updateUi();
+})();
+</script>
+</body>
+</html>
