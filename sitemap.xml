@@ -2,14 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://instatimestamp.com/</loc>
-    <priority>1.0</priority>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://instatimestamp.com/instagram-resizer.html</loc>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://instatimestamp.com/instagram-story-size-guide.html</loc>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://instatimestamp.com/instagram-story-viewer.html</loc>
+  </url>
+  <url>
+    <loc>https://instatimestamp.com/instagram-last-post-checker.html</loc>
   </url>
   <url>
     <loc>https://instatimestamp.com/blog.html</loc>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://instatimestamp.com/privacy.html</loc>
-    <priority>0.3</priority>
   </url>
 </urlset>
