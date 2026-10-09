@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
-  <title>Free Instagram Story & Reel Image Resizer | InstaTimestamp</title>
-  <meta name="description" content="Resize photos for Instagram Stories, Reel covers, square posts and portrait posts. Crop, fit or blur the background, preview and download. Free, private and no login required.">
+  <title>Resize Photo for Instagram Story, Reel & Post Free | InstaTimestamp</title>
+  <meta name="description" content="Resize a photo for Instagram Story, Reel cover or post in seconds. Use exact Instagram sizes, crop or fit, preview and download free. No login, no watermark, no upload.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://instatimestamp.com/instagram-resizer.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Free Instagram Story & Reel Image Resizer | InstaTimestamp">
-  <meta property="og:description" content="Resize Instagram images in your browser. No upload, no account and no API fees.">
+  <meta property="og:title" content="Resize Photo for Instagram Story, Reel & Post Free | InstaTimestamp">
+  <meta property="og:description" content="Stop Instagram cropping your photos. Resize for Story, Reel cover and feed posts free in your browser.">
   <meta property="og:url" content="https://instatimestamp.com/instagram-resizer.html">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -189,6 +189,15 @@
     }
     @media(max-width:410px){.presets{grid-template-columns:1fr 1fr}.preset{padding:9px;gap:6px}.preset-shape-wrap{width:25px;flex-basis:25px}.preset-title{font-size:11px}.mode{font-size:11px;padding:11px 3px}.panel{padding:15px}.preview-stage{padding:12px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  
+    .intent-links{max-width:760px;margin:18px auto 0;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+    .intent-links a{font-size:12px;font-weight:700;color:var(--accent-text);background:var(--accent-light);border:1px solid var(--border);padding:7px 10px;border-radius:999px}
+    .intent-links a:hover{border-color:var(--accent)}
+    .share-row{display:flex;gap:8px;margin-top:10px}
+    .share-btn{flex:1;background:var(--bg-2);border:1px solid var(--border);color:var(--text-2);font-size:12px;font-weight:700;padding:10px 12px;border-radius:8px}
+    .share-btn:hover{border-color:var(--accent);color:var(--accent-text)}
+    .growth-note{margin-top:12px;padding:10px 12px;border:1px solid var(--border);background:var(--bg-2);border-radius:9px;color:var(--text-2);font-size:11px;line-height:1.55}
+
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Instagram Story & Reel Image Resizer","url":"https://instatimestamp.com/instagram-resizer.html","applicationCategory":"MultimediaApplication","operatingSystem":"Any modern web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free browser-based Instagram image resizer for Story, Reel cover and post formats."}
@@ -206,6 +215,8 @@
           <a href="/instagram-last-post-checker.html"><span class="nav-dropdown-title">Instagram Last Post Checker</span><span class="nav-dropdown-desc">Decode post and Reel timestamps</span></a>
           <a href="/instagram-story-viewer.html"><span class="nav-dropdown-title">Instagram Story Viewer</span><span class="nav-dropdown-desc">View currently available public Stories</span></a>
           <a href="/instagram-resizer.html" aria-current="page"><span class="nav-dropdown-title">Instagram Image Resizer</span><span class="nav-dropdown-desc">Resize photos and Reel covers for free</span></a>
+          <a href="/instagram-competitor-posting-time.html"><span class="nav-dropdown-title">Competitor Posting Time Analyzer</span><span class="nav-dropdown-desc">Analyze one competitor free</span></a>
+          <a href="/instagram-competitor-comparison.html"><span class="nav-dropdown-title">Competitor A vs B · Pro</span><span class="nav-dropdown-desc">Planned paid comparison</span></a>
         </div>
       </div>
       <a href="#how-it-works">How it works</a>
@@ -217,8 +228,13 @@
   <main>
     <section class="hero">
       <div class="hero-badge"><span class="badge-dot"></span> 100% free · No login · Browser-based</div>
-      <h1>Instagram image resizer.<br><em>Perfect size, every time.</em></h1>
-      <p class="hero-sub">Resize photos for Instagram Stories, Reel covers and posts. Crop, add padding or blur the background — then download in seconds. Your images stay on your device.</p>
+      <h1>Stop Instagram <em>cropping your photo.</em><br>Resize it in seconds.</h1>
+      <p class="hero-sub">Upload once and resize for Instagram Story, Reel cover, portrait, square or landscape posts. No login, no watermark and your photo never leaves your device.</p>
+      <div class="intent-links" aria-label="Popular Instagram resize tasks">
+        <a href="/resize-photo-for-instagram-story.html">Story photo · 9:16</a>
+        <a href="/instagram-reel-cover-resizer.html">Reel cover · 9:16</a>
+        <a href="/instagram-post-resizer.html">Feed post sizes</a>
+      </div>
     </section>
 
     <section class="app-shell" aria-label="Free Instagram image resizer">
@@ -248,6 +264,9 @@
               </button>
               <button type="button" class="preset" data-preset="portrait" aria-pressed="false">
                 <span class="preset-shape-wrap"><span class="preset-shape" style="width:22px;height:28px"></span></span><span><span class="preset-title">Portrait post</span><span class="preset-dim">1080 × 1350 · 4:5</span></span>
+              </button>
+              <button type="button" class="preset" data-preset="tall" aria-pressed="false">
+                <span class="preset-shape-wrap"><span class="preset-shape" style="width:22px;height:30px"></span></span><span><span class="preset-title">Tall portrait post</span><span class="preset-dim">1080 × 1440 · 3:4</span></span>
               </button>
               <button type="button" class="preset" data-preset="landscape" aria-pressed="false">
                 <span class="preset-shape-wrap"><span class="preset-shape" style="width:29px;height:16px"></span></span><span><span class="preset-title">Landscape post</span><span class="preset-dim">1080 × 566 · 1.91:1</span></span>
@@ -284,6 +303,10 @@
           </div>
           <button class="download-btn" type="button" id="downloadButton" disabled><span aria-hidden="true">↓</span> Download resized image</button>
           <div class="status" id="statusMessage" role="status" aria-live="polite"></div>
+          <div class="share-row" aria-label="Share this free tool">
+            <button class="share-btn" type="button" id="shareToolButton">↗ Share free tool</button>
+            <button class="share-btn" type="button" id="copyToolButton">⧉ Copy link</button>
+          </div>
           <p class="below-button">Your image is processed locally in your browser. No account, no watermark, no paid API.</p>
         </div>
 
@@ -356,6 +379,7 @@
     story: { width: 1080, height: 1920, label: 'Instagram Story / Reel cover · 9:16', filename: 'story-reel' },
     square: { width: 1080, height: 1080, label: 'Instagram square post · 1:1', filename: 'square-post' },
     portrait: { width: 1080, height: 1350, label: 'Instagram portrait post · 4:5', filename: 'portrait-post' },
+    tall: { width: 1080, height: 1440, label: 'Instagram tall portrait post · 3:4', filename: 'tall-portrait-post' },
     landscape: { width: 1080, height: 566, label: 'Instagram landscape post · 1.91:1', filename: 'landscape-post' }
   });
 
@@ -365,7 +389,10 @@
   const dropzone = $('dropzone');
   const input = $('fileInput');
   const zoomRange = $('zoomRange');
-  const state = { image: null, file: null, preset: 'story', mode: 'crop', zoom: 1, panX: 0, panY: 0 };
+  const requestedPreset = (new URLSearchParams(window.location.search).get('preset') || '').toLowerCase();
+  const presetAliases = { story:'story', reel:'story', square:'square', portrait:'portrait', tall:'tall', landscape:'landscape' };
+  const initialPreset = presetAliases[requestedPreset] || 'story';
+  const state = { image: null, file: null, preset: initialPreset, mode: 'crop', zoom: 1, panX: 0, panY: 0 };
   let imageObjectUrl = null;
   let loadNumber = 0;
   let drawing = false;
@@ -374,6 +401,13 @@
   function setStatus(message, type = '') {
     $('statusMessage').textContent = message;
     $('statusMessage').className = `status${type ? ` ${type}` : ''}`;
+  }
+
+  function trackEvent(name, params = {}) {
+    try {
+      if (typeof window.gtag === 'function') window.gtag('event', name, params);
+      if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: name, ...params });
+    } catch {}
   }
 
   function setPressed(groupId, attr, selected) {
@@ -493,6 +527,7 @@
       $('downloadButton').disabled = false;
       render();
       setStatus('Ready to download. Choose a preset or drag to reposition.', 'success');
+      trackEvent('resizer_image_loaded', { preset: state.preset, width: img.naturalWidth, height: img.naturalHeight });
     } catch (error) {
       if (myLoad === loadNumber) setStatus(error.message || 'Could not open this image.', 'error');
     } finally {
@@ -523,6 +558,7 @@
     const button = event.target.closest('[data-preset]');
     if (!button) return;
     state.preset = button.dataset.preset;
+    trackEvent('resizer_preset_selected', { preset: state.preset });
     resetPanAndZoom();
     render();
   });
@@ -606,12 +642,48 @@
       link.remove();
       setTimeout(() => URL.revokeObjectURL(downloadUrl), 15000);
       setStatus(`Downloaded ${name} · ${formatBytes(blob.size)}`, 'success');
+      trackEvent('resizer_download', { preset: state.preset, format: resultType, bytes: blob.size });
     } catch (error) {
       setStatus(error.message || 'Download failed. Please try again.', 'error');
     } finally {
       drawing = false;
       button.disabled = false;
       button.innerHTML = '<span aria-hidden="true">↓</span> Download resized image';
+    }
+  });
+
+
+  async function shareTool() {
+    const shareUrl = 'https://instatimestamp.com/instagram-resizer.html';
+    const shareData = {
+      title: 'Free Instagram Image Resizer',
+      text: 'Resize photos for Instagram Stories, Reels and posts free — no upload or login.',
+      url: shareUrl
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        trackEvent('resizer_share', { method: 'native' });
+      } else {
+        await navigator.clipboard.writeText(shareUrl);
+        setStatus('Tool link copied. Share it with another creator.', 'success');
+        trackEvent('resizer_share', { method: 'clipboard' });
+      }
+    } catch (error) {
+      if (error && error.name === 'AbortError') return;
+      setStatus('Could not share automatically. Copy the link instead.', 'error');
+    }
+  }
+
+  $('shareToolButton').addEventListener('click', shareTool);
+  $('copyToolButton').addEventListener('click', async () => {
+    const shareUrl = 'https://instatimestamp.com/instagram-resizer.html';
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setStatus('Tool link copied. Share it with another creator.', 'success');
+      trackEvent('resizer_share', { method: 'copy_button' });
+    } catch {
+      setStatus('Copy this link: ' + shareUrl, 'error');
     }
   });
 
