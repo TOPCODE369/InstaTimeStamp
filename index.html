@@ -317,6 +317,31 @@ a { color: inherit; text-decoration: none; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .pricing-grid { grid-template-columns: 1fr; }
 }
+
+.resizer-promo {
+  max-width: 1040px; margin: 0 auto 16px; padding: 0 24px;
+}
+.resizer-promo-inner {
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  border:1.5px solid var(--border); background:var(--accent-light);
+  border-radius:16px; padding:22px 24px;
+}
+.resizer-promo-kicker { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.09em; color:var(--accent-text); margin-bottom:5px; }
+.resizer-promo h2 { font-size:20px; line-height:1.25; letter-spacing:-.025em; color:var(--text); margin-bottom:5px; }
+.resizer-promo p { color:var(--text-2); font-size:13px; line-height:1.6; max-width:650px; }
+.resizer-promo-btn { display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; background:var(--accent); color:#fff; padding:11px 16px; border-radius:9px; font-size:13px; font-weight:800; }
+.resizer-promo-btn:hover { background:var(--accent-hover); }
+@media(max-width:700px){.resizer-promo-inner{align-items:flex-start;flex-direction:column}.resizer-promo-btn{width:100%}}
+
+
+.comparison-promo{max-width:1040px;margin:0 auto 18px;padding:0 24px}
+.comparison-promo-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;border:1.5px solid var(--border);background:var(--bg-2);border-radius:16px;padding:22px 24px}
+.comparison-promo-kicker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--accent-text);margin-bottom:5px}
+.comparison-promo h2{font-size:20px;line-height:1.25;letter-spacing:-.025em;color:var(--text);margin-bottom:5px}
+.comparison-promo p{color:var(--text-2);font-size:13px;line-height:1.6;max-width:650px}
+.comparison-promo-btn{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;background:var(--text);color:var(--bg);padding:11px 16px;border-radius:9px;font-size:13px;font-weight:800}
+@media(max-width:700px){.comparison-promo-inner{align-items:flex-start;flex-direction:column}}
+
 </style>
 
 <!-- Site and free timestamp tool structured data -->
@@ -380,6 +405,14 @@ a { color: inherit; text-decoration: none; }
           <span class="nav-dropdown-title">Instagram Image Resizer</span>
           <span class="nav-dropdown-desc">Resize photos and Reel covers for free.</span>
         </a>
+        <a href="/instagram-competitor-posting-time.html">
+          <span class="nav-dropdown-title">Competitor Posting Time Analyzer</span>
+          <span class="nav-dropdown-desc">Analyze one competitor free from supplied links.</span>
+        </a>
+        <a href="/instagram-competitor-comparison.html">
+          <span class="nav-dropdown-title">Competitor A vs B · Pro</span>
+          <span class="nav-dropdown-desc">Planned paid side-by-side comparison.</span>
+        </a>
       </div>
     </div>
 
@@ -417,6 +450,32 @@ a { color: inherit; text-decoration: none; }
   <div class="trust-item">🛡 No data stored</div>
   <div class="trust-item">📱 Works on mobile</div>
 </div>
+
+
+<section class="resizer-promo" aria-label="Featured free Instagram tool">
+  <div class="resizer-promo-inner">
+    <div>
+      <div class="resizer-promo-kicker">Free creator tool · No upload</div>
+      <h2>Instagram cropping your photo?</h2>
+      <p>Resize it for Stories, Reel covers and feed posts in seconds. Your image stays on your device and there is no watermark.</p>
+    </div>
+    <a class="resizer-promo-btn" href="/instagram-resizer.html">Resize a photo free →</a>
+  </div>
+</section>
+
+<section class="comparison-promo" aria-label="Competitor research tools">
+  <div class="comparison-promo-inner">
+    <div>
+      <div class="comparison-promo-kicker">Competitor research</div>
+      <h2>Analyze one competitor free. Compare A vs B in Pro.</h2>
+      <p>Decode up to 10 post or Reel links for one competitor at no cost. The planned $10 Pro unlock adds side-by-side competitor comparison and larger samples.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="comparison-promo-btn" href="/instagram-competitor-posting-time.html">Analyze free →</a>
+      <a class="resizer-promo-btn" href="/instagram-competitor-comparison.html">See Pro →</a>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="how-it-works">
   <div class="section-eyebrow">How it works</div>
@@ -500,6 +559,14 @@ a { color: inherit; text-decoration: none; }
   <p class="section-sub">Use InstaTimestamp for post timing, or open another tool when you need something different.</p>
 
   <div class="tools-grid">
+
+    <a class="tool-card" href="/instagram-resizer.html">
+      <div class="tool-card-icon">▣</div>
+      <div class="tool-card-kicker">Image tools · Free</div>
+      <h3>Instagram Image Resizer</h3>
+      <p>Crop or fit your photos for Instagram Stories, Reel covers and posts. Everything runs privately in your browser.</p>
+      <div class="tool-card-link">Open Image Resizer <span>→</span></div>
+    </a>
     <a class="tool-card" href="/instagram-last-post-checker.html">
       <div class="tool-card-icon">🕐</div>
       <div class="tool-card-kicker">Post timing</div>
@@ -508,20 +575,20 @@ a { color: inherit; text-decoration: none; }
       <div class="tool-card-link">Open Last Post Checker <span>→</span></div>
     </a>
 
+    <a class="tool-card" href="/instagram-competitor-posting-time.html">
+      <div class="tool-card-icon">↗</div>
+      <div class="tool-card-kicker">Competitor research · Free</div>
+      <h3>Competitor Posting Time Analyzer</h3>
+      <p>Analyze one competitor from up to 10 post or Reel links and see their posting-day and time patterns.</p>
+      <div class="tool-card-link">Analyze a competitor <span>→</span></div>
+    </a>
+
     <a class="tool-card" href="/instagram-story-viewer.html">
       <div class="tool-card-icon">◉</div>
       <div class="tool-card-kicker">Public Stories</div>
       <h3>Instagram Story Viewer</h3>
       <p>Search a public Instagram username and view currently available Stories without logging into Instagram.</p>
       <div class="tool-card-link">Open Story Viewer <span>→</span></div>
-    </a>
-
-    <a class="tool-card" href="/instagram-resizer.html">
-      <div class="tool-card-icon">▣</div>
-      <div class="tool-card-kicker">Image tools · Free</div>
-      <h3>Instagram Image Resizer</h3>
-      <p>Crop or fit your photos for Instagram Stories, Reel covers and posts. Everything runs privately in your browser.</p>
-      <div class="tool-card-link">Open Image Resizer <span>→</span></div>
     </a>
   </div>
   <p style="margin-top:24px;color:var(--text-2);font-size:14px;line-height:1.7">
