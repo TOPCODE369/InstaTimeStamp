@@ -213,5 +213,6 @@ $('navDropdown').addEventListener('click',()=>{const open=$('navMenu').classList
 $('themeBtn').addEventListener('click',()=>{const root=document.documentElement;const next=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=next;$('themeBtn').textContent=next==='dark'?'☀':'☾';try{localStorage.setItem('theme',next);}catch(_){}});
 try{const theme=localStorage.getItem('theme');if(theme==='dark'){document.documentElement.dataset.theme='dark';$('themeBtn').textContent='☀';}}catch(_){}
 </script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "314567a59db8422e8a6dcffc4d509dec"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
