@@ -795,6 +795,58 @@
     </div>
   </section>
 
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-tag">Understand the result</div>
+      <h2>Read a last-post timestamp correctly.</h2>
+      <p class="section-intro">
+        The date you see is calculated from the Instagram media identifier in the link you provide.
+        Here's how to interpret it, and where this technique has limits.
+      </p>
+      <div class="grid2">
+        <div class="card">
+          <h3>Worked example: UTC versus your local time</h3>
+          <p>
+            Imagine a decoded timestamp of <strong>October 20, 2026 at 14:30 UTC</strong>.
+            That same moment is <strong>8:00 PM in India (IST)</strong> and
+            <strong>10:30 AM in New York (EDT)</strong> on that date.
+            These are three clock readings for one instant, not three separate posting times.
+          </p>
+          <p>
+            InstaTimestamp displays the converted date and time in your browser's timezone,
+            plus the UTC value. If you travel or change your device's timezone,
+            the local clock reading can change even though the decoded UTC moment does not.
+            This example is illustrative; it is not a claim about a real Instagram post.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Make sure you copied the newest post</h3>
+          <p>
+            This checker cannot inspect an account's feed. Open the public profile yourself,
+            look for its newest accessible post or Reel, and copy that item's URL.
+            Bear in mind that pinned posts may appear above newer uploads, and that
+            Reels can be surfaced in a separate tab. Checking only the first thumbnail
+            could therefore give you an older item rather than the account's most recent activity.
+          </p>
+          <p>
+            A profile URL such as <strong>instagram.com/username/</strong> is not enough;
+            the tool needs a direct URL containing a post or Reel identifier.
+            It doesn't detect deleted posts, hidden activity, or unpublished drafts.
+          </p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>What the decoded time can and cannot prove:</strong>
+        It is a timestamp derived from the media identifier, not an independent verification
+        of when a post became publicly visible. A later edit, archive, or restoration
+        is not shown by the identifier. A successfully decoded private-post link does not
+        make the private content accessible. For research, treat the result as a useful
+        timestamp indicator and check the original post where possible.
+      </div>
+    </div>
+  </section>
+
   <section class="section alt">
     <div class="wrap">
 
@@ -901,9 +953,10 @@
           </div>
 
           <div class="faq-a">
-            No. The timestamp is decoded from the Instagram post identifier
-            rather than guessed from a relative label such as
-            “3 days ago.”
+            The tool computes it from the Instagram media identifier rather
+            than guessing from a label such as “3 days ago.” However, that
+            identifier alone cannot independently verify when the content first
+            became publicly visible or whether it was later edited or archived.
           </div>
 
         </div>
