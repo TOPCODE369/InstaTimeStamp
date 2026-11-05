@@ -412,10 +412,6 @@ a { color: inherit; text-decoration: none; }
           <span class="nav-dropdown-title">Instagram Last Post Checker</span>
           <span class="nav-dropdown-desc">Check the date and time of an Instagram post or reel.</span>
         </a>
-        <a href="/instagram-story-viewer.html">
-          <span class="nav-dropdown-title">Instagram Story Viewer</span>
-          <span class="nav-dropdown-desc">View currently available Stories from public accounts.</span>
-        </a>
         <a href="/instagram-resizer.html">
           <span class="nav-dropdown-title">Instagram Image Resizer</span>
           <span class="nav-dropdown-desc">Resize photos and Reel covers for free.</span>
@@ -559,16 +555,16 @@ a { color: inherit; text-decoration: none; }
       <p>Explore research-backed posting-time benchmarks and compare them with the observed posting habits of a competitor.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">📈</div>
+      <div class="feature-icon">🖼️</div>
       <div class="feature-tag tag-free">Free</div>
-      <h3>Instagram Story Viewer</h3>
-      <p>Check currently available Stories from public Instagram accounts. This separate tool uses a Cloudflare Worker and a third-party data provider.</p>
+      <h3>Browser-based image resizing</h3>
+      <p>Choose Crop, Fit or Blur Fill for photos, Stories and Reel covers, with local processing and downloadable results.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔒</div>
       <div class="feature-tag tag-free">Free</div>
       <h3>Browser-based timestamp checking</h3>
-      <p>Timestamp decoding and image resizing run on your device. The separate Story Viewer uses a server-side service for public Stories.</p>
+      <p>Timestamp decoding and image resizing run on your device; website hosting and analytics providers may still process technical request information.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📱</div>
@@ -611,12 +607,12 @@ a { color: inherit; text-decoration: none; }
       <div class="tool-card-link">Analyze a competitor <span>→</span></div>
     </a>
 
-    <a class="tool-card" href="/instagram-story-viewer.html">
-      <div class="tool-card-icon">◉</div>
-      <div class="tool-card-kicker">Public Stories</div>
-      <h3>Instagram Story Viewer</h3>
-      <p>Search a public Instagram username and view currently available Stories without logging into Instagram.</p>
-      <div class="tool-card-link">Open Story Viewer <span>→</span></div>
+    <a class="tool-card" href="/best-time-to-post-on-instagram.html">
+      <div class="tool-card-icon">▦</div>
+      <div class="tool-card-kicker">Posting guide · Free</div>
+      <h3>Best Time to Post on Instagram</h3>
+      <p>Explore research-based timing benchmarks and a timezone-aware posting planner for Instagram posts and Reels.</p>
+      <div class="tool-card-link">Open posting-time guide <span>→</span></div>
     </a>
   </div>
   <p style="margin-top:24px;color:var(--text-2);font-size:14px;line-height:1.7">
@@ -638,7 +634,7 @@ a { color: inherit; text-decoration: none; }
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">Does it work for Instagram Stories?<div class="faq-toggle">+</div></div>
-      <div class="faq-a">The timestamp checker on this page is for posts and reels. For currently available Stories from public accounts, use our <a href="/instagram-story-viewer.html" style="color:var(--accent-text);font-weight:600;">Instagram Story Viewer</a>.</div>
+      <div class="faq-a">No. This checker decodes post and Reel shortcodes; Instagram Story links use a different format and cannot be decoded by this tool.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">Is the timestamp 100% accurate?<div class="faq-toggle">+</div></div>
@@ -646,7 +642,7 @@ a { color: inherit; text-decoration: none; }
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">Do you store the URLs I paste?<div class="faq-toggle">+</div></div>
-      <div class="faq-a">The link you paste into this timestamp checker is decoded locally in your browser, not sent to our application server for decoding. Other tools, including the Story Viewer, handle data differently; see our Privacy Policy.</div>
+      <div class="faq-a">The link you paste into this timestamp checker is decoded locally in your browser, not sent to our application server for decoding. Hosting, analytics and future ad services may process technical data about visits; see our <a href="/privacy.html">Privacy Policy</a>.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">Does the competitor analyzer fetch Instagram posts automatically?<div class="faq-toggle">+</div></div>
@@ -803,7 +799,7 @@ function checkPost() {
       card.classList.add('result', 'visible', 'success');
       setTimeout(() => { const f = document.getElementById('ageFill'); if (f) f.style.width = pct + '%'; }, 50);
     } catch(e) {
-      card.innerHTML = '<div class="error-msg">Couldn\'t decode this URL. Make sure it\'s a public Instagram post or reel link. Stories and profile links are not supported.</div>';
+      card.innerHTML = '<div class="error-msg">Couldn\'t decode this URL. Check that it contains a valid Instagram post or Reel shortcode. Stories and profile links are not supported.</div>';
       card.classList.add('result', 'visible', 'error');
     }
     btn.disabled = false; btn.textContent = 'Check time →';
