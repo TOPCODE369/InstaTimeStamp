@@ -75,6 +75,20 @@
     .themebtn{position:fixed;bottom:22px;right:23px;z-index:20;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:50%;width:48px;height:48px;box-shadow:0 4px 20px rgba(0,0,0,.13);cursor:pointer;font-size:19px}
     @media(max-width:850px){.layout{grid-template-columns:1fr}.toc{position:static;order:-1}.ratio-row{gap:9px}}
     @media(max-width:560px){.hero{padding:43px 0 31px}.layout{padding:27px 0 60px}.nav{padding:0 16px}.navlinks{gap:10px}.navlinks a{font-size:11px}.navlinks .optional{display:none}.ratio-row{grid-template-columns:repeat(2,1fr)}.wrap{padding:0 19px}}
+    /* Relative aspect-ratio diagrams. Not a simulation of Instagram UI. */
+    .format-visuals{margin:29px 0 26px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .format-card{border:1px solid var(--border);background:var(--panel);border-radius:12px;padding:14px 10px;text-align:center;min-width:0}
+    .format-frame{position:relative;margin:0 auto 12px;border-radius:8px;overflow:hidden;border:2px solid var(--accent);background:linear-gradient(165deg,#a5d8fb 0%,#dbeafe 51%,#6da38c 52%,#32634f 100%)}
+    .format-frame::before{content:'';position:absolute;left:15%;bottom:12%;width:55%;height:44%;background:#356d61;clip-path:polygon(0 100%,50% 0,100% 100%)}
+    .format-frame::after{content:'';position:absolute;right:13%;top:17%;width:23%;aspect-ratio:1;background:#ffdf8c;border-radius:50%}
+    .format-frame.story{width:75px;aspect-ratio:9/16}
+    .format-frame.portrait{width:94px;aspect-ratio:4/5}
+    .format-frame.square{width:115px;aspect-ratio:1}
+    .format-frame.landscape{width:140px;aspect-ratio:1.91/1;margin-top:30px;margin-bottom:32px}
+    .format-card strong{display:block;font-size:12px;color:var(--text)}
+    .format-card small{display:block;font-size:11px;color:var(--muted);line-height:1.5;margin-top:5px}
+    .format-note{font-size:12px;color:var(--light);line-height:1.7;margin-top:10px}
+    @media(max-width:600px){.format-visuals{grid-template-columns:repeat(2,minmax(0,1fr))}.format-frame.landscape{width:125px}}
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Article","headline":"Instagram Story Size Guide: Dimensions, Ratios and Crop Tips","description":"Practical Instagram Story and Reel cover image sizes, layout advice and a browser-based image resizer.","mainEntityOfPage":{"@type":"WebPage","@id":"https://instatimestamp.com/instagram-story-size-guide.html"},"author":{"@type":"Organization","name":"InstaTimestamp"},"publisher":{"@type":"Organization","name":"InstaTimestamp"}}
@@ -107,12 +121,13 @@
               <tr><td><strong>Portrait feed image</strong></td><td>1080 × 1350</td><td>4:5</td><td>Taller feed graphics and portrait photos</td></tr>
               <tr><td><strong>Landscape feed image</strong></td><td>1080 × 566</td><td>About 1.91:1</td><td>Wide photos and horizontal designs</td></tr>
             </tbody></table></div>
-          <div class="ratio-row" aria-label="Image ratio illustrations">
-            <div class="ratio"><span class="ratio-box" style="width:36px;height:64px"></span><strong>9:16</strong><small>Story / cover</small></div>
-            <div class="ratio"><span class="ratio-box" style="width:55px;height:55px"></span><strong>1:1</strong><small>Square post</small></div>
-            <div class="ratio"><span class="ratio-box" style="width:44px;height:55px"></span><strong>4:5</strong><small>Portrait post</small></div>
-            <div class="ratio"><span class="ratio-box" style="width:66px;height:35px"></span><strong>1.91:1</strong><small>Landscape post</small></div>
+          <div class="format-visuals" aria-label="Illustrative Instagram image aspect ratios">
+            <div class="format-card"><div class="format-frame story" role="img" aria-label="Tall nine by sixteen frame with illustrative landscape"></div><strong>Story / Reel cover</strong><small>9:16 · 1080 × 1920</small></div>
+            <div class="format-card"><div class="format-frame portrait" role="img" aria-label="Four by five portrait frame with illustrative landscape"></div><strong>Portrait feed</strong><small>4:5 · 1080 × 1350</small></div>
+            <div class="format-card"><div class="format-frame square" role="img" aria-label="Square frame with illustrative landscape"></div><strong>Square feed</strong><small>1:1 · 1080 × 1080</small></div>
+            <div class="format-card"><div class="format-frame landscape" role="img" aria-label="Wide one point nine one by one landscape frame with illustrative landscape"></div><strong>Landscape feed</strong><small>About 1.91:1 · 1080 × 566</small></div>
           </div>
+          <p class="format-note">Each picture is a proportional drawing, not a pixel-accurate rendering at full resolution. Instagram may crop thumbnails and previews differently. For an actual before-and-after illustration of Crop, Fit and Blur Fill, see the <a href="/instagram-resizer.html#mode-examples">resizer examples</a>.</p>
         </section>
         <section id="story">
           <h2>Instagram Story size: why 1080 × 1920?</h2>
@@ -132,7 +147,7 @@
             <li>Avoid relying on details at the far left, right, top or bottom.</li>
             <li>Check the cover inside Instagram before publishing; its preview may not match the full-screen artwork.</li>
           </ul>
-          <p>If a photo is originally horizontal, don't stretch it into a tall canvas. Use the <a href="/instagram-resizer.html">free resizer</a> to choose Crop, Fit or Blur Fill.</p>
+          <p>If a photo is originally horizontal, don't stretch it into a tall canvas. Use the <a href="/instagram-resizer.html">free resizer</a> to choose Crop, Fit or Blur Fill. The <a href="/instagram-resizer.html#mode-examples">side-by-side examples</a> show what is lost or preserved in each mode.</p>
         </section>
         <section id="crop">
           <h2>Crop, Fit or Blur Fill: what's the difference?</h2>
