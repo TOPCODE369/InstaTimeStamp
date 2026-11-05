@@ -201,6 +201,21 @@ a { color: inherit; text-decoration: none; }
 }
 .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); font-weight: 500; }
 
+/* Educational example — separate from the timestamp checker's live result. */
+.timestamp-example { max-width: 980px; margin: 0 auto; padding: 50px 24px 58px; }
+.timestamp-example h2 { font-size: clamp(1.45rem, 2.7vw, 1.85rem); letter-spacing: -.03em; line-height: 1.25; margin: 0 0 10px; }
+.timestamp-example > p { color: var(--text-2); max-width: 750px; font-size: 14px; line-height: 1.8; margin: 0 0 18px; }
+.example-panel { border: 1px solid var(--border); background: var(--bg-2); border-radius: 16px; padding: 23px; }
+.example-label { font-size: 11px; letter-spacing: .08em; font-weight: 800; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
+.example-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin: 16px 0; }
+.example-cell { border: 1px solid var(--border); border-radius: 10px; background: var(--bg); padding: 15px; min-width: 0; }
+.example-cell small { display: block; font-size: 11px; color: var(--text-3); margin-bottom: 5px; }
+.example-cell strong { display: block; color: var(--text); font-size: 15px; }
+.example-explain { color: var(--text-2); font-size: 13px; line-height: 1.8; }
+.example-explain a { color: var(--accent-text); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+@media(max-width:600px) { .timestamp-example { padding: 38px 20px 45px; } .example-grid { grid-template-columns: 1fr; } }
+
+
 .section { max-width: 1040px; margin: 0 auto; padding: 80px 24px; }
 .section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 12px; }
 .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; color: var(--text); margin-bottom: 14px; }
@@ -449,6 +464,21 @@ a { color: inherit; text-decoration: none; }
   <div class="trust-item">🛡 Local timestamp decoding</div>
   <div class="trust-item">📱 Works on mobile</div>
 </div>
+
+<section class="timestamp-example" aria-labelledby="example-heading">
+  <div class="example-label">Worked example · illustrative data</div>
+  <h2 id="example-heading">What does an Instagram timestamp result tell you?</h2>
+  <p>Suppose a media shortcode encodes <strong>June 18, 2025 at 14:30 UTC</strong>. The same instant appears at a different local clock time depending on your timezone. Here is what that conversion looks like:</p>
+  <div class="example-panel">
+    <div class="example-grid">
+      <div class="example-cell"><small>Decoded date (UTC)</small><strong>June 18, 2025</strong></div>
+      <div class="example-cell"><small>UTC time</small><strong>2:30 PM</strong></div>
+      <div class="example-cell"><small>Local time in India (IST)</small><strong>8:00 PM</strong></div>
+    </div>
+    <p class="example-explain"><strong>How to read it:</strong> 2:30 PM UTC and 8:00 PM IST represent the same moment. Your real result uses your browser's timezone, so the displayed local hour may differ. This is a mathematical illustration, not a claim about an actual Instagram post.</p>
+    <p class="example-explain" style="margin-top:10px"><strong>Important limitation:</strong> The checker decodes a time embedded in the media ID. It does not contact Instagram to verify the post, prove when the media first became publicly visible, reveal private content, or show engagement performance. Read the <a href="/blog.html">step-by-step timestamp guide</a> for other methods and limitations.</p>
+  </div>
+</section>
 
 
 <section class="resizer-promo" aria-label="Featured free Instagram tool">
